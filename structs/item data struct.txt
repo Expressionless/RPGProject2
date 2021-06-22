@@ -1,0 +1,6 @@
+ItemData:
+	- Integer:ID
+	- String:NAME (len = 16 bytes)
+	- Boolean:FLAGS (1xInteger)
+		- Block 1 (8 Bytes) or (Integer)
+			- Boolean:STACKABLE default:true

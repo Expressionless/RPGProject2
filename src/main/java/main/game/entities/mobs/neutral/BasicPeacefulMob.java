@@ -6,9 +6,9 @@ import helix.utils.math.Point;
 import main.game.RpgGame;
 import main.game.entities.Mob;
 
-public abstract class BasicPeaceful extends Mob {
+public abstract class BasicPeacefulMob extends Mob {
 
-	public BasicPeaceful(RpgGame game, Point pos) {
+	public BasicPeacefulMob(RpgGame game, Point pos) {
 		super(game, pos);
 	}
 

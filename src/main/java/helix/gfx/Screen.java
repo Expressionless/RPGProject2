@@ -13,6 +13,8 @@ import helix.game.Data;
  */
 public abstract class Screen extends ScreenAdapter {
 	
+	private boolean initialized = false;
+	
 	/**
 	 * Basic Step event of the screen. Called before {@link Screen#draw}
 	 * @param delta - Time since last update (seconds)
@@ -24,6 +26,8 @@ public abstract class Screen extends ScreenAdapter {
 	 * @param delta - Time since last update (seconds)
 	 */
 	protected abstract void draw(float delta);
+	
+	protected abstract void create();
 	
 	/**
 	 * reference to main {@link Data}
@@ -44,6 +48,22 @@ public abstract class Screen extends ScreenAdapter {
 		this.data = game.getData();
 	}
 	
+	/**
+	 * Initialize the Screen (Can only be called once per instance)
+	 */
+	public void init() {
+		if(initialized)
+			return;
+		
+		create();
+		initialized = true;
+	}
+	
+	@Override
+	public void show() {
+		this.init();
+	}
+	
 	@Override
 	public void render(float delta) {
 		this.step(delta);
@@ -59,4 +79,7 @@ public abstract class Screen extends ScreenAdapter {
 		return data;
 	}
 	
+	public boolean isInitialized() {
+		return initialized;
+	}
 }

@@ -24,6 +24,12 @@ public class MenuScreen extends Screen {
 		
 	}
 
+	@Override
+	protected void create() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }

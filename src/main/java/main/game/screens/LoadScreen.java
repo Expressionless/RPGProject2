@@ -54,4 +54,10 @@ public class LoadScreen extends Screen {
 		return this.getRpgGame().getGameData();
 	}
 
+	@Override
+	protected void create() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

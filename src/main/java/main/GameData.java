@@ -1,7 +1,9 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector3;
 
 import helix.game.Data;
@@ -23,6 +25,7 @@ import main.game.ui.components.Bar;
 public final class GameData extends Data {
 	
 	public static final ArrayList<ItemInfo> ITEM_TYPES = new ArrayList<>();
+	public static final HashMap<String, InputAdapter> INPUT_ADAPTERS = new HashMap<>();
 	public final ArrayList<Mob> mobs;
 	public final ArrayList<Item> items;
 	

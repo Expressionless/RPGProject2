@@ -8,9 +8,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+import helix.annotations.QueueAsset;
 import helix.utils.ClassUtils;
-import main.game.annotations.QueueAsset;
-import main.game.entities.mobs.enemies.mage.Mage;
 
 /**
  * Basic implementation of {@link com.badlogic.gdx.Game}

@@ -19,8 +19,7 @@ public final class GameScreen extends Screen {
 
 	private World world;
 	private UI ui;
-
-	private Player player;
+	
 	private SpriteBatch batch;
 
 	public GameScreen(RpgGame game) {
@@ -29,28 +28,37 @@ public final class GameScreen extends Screen {
 
 	@Override
 	protected void create() {
+		this.batch = new SpriteBatch();
 		
-		this.world = new World(32, 32);
-		world.setGame(this.getRpgGame());
+		this.world = new World(this.getRpgGame(), 32, 32);
 		
 		this.ui = new UI(this.getRpgGame());
 		this.getGameData().setUI(this.ui);
+
+		this.startWorld();
 		
+	}
+	
+	private void startWorld() {
+		world.spawnPlayer(new Point(30, 30));
+		
+		world.itemSpawner.spawnItem(50, 20, "grass", 5);
+		world.spawnEntity(Tree.class, new Point(100, 80));
 
-		player = new Player(getRpgGame(), new Point(30, 30));
+		world.spawnMob(Mage.class, new Point(140, 40));
+
+		initInputs();
+	}
+	
+	private void initInputs() {
+
 		GameData.INPUT_ADAPTERS.put("GAME", new GameInput(this.getGameData()));
-		this.batch = new SpriteBatch();
-		ItemSpawner is = new ItemSpawner(this.getRpgGame());
-		is.spawnItem(50, 20, "grass", 5);
-		new Tree(getRpgGame(), new Point(100, 80));
-
-		new Mage(getRpgGame(), new Point(140, 40));
 	}
 	
 	@Override
 	protected void step(float delta) {
-		this.handleInput();
-		this.updateCamera();
+		Gdx.input.setInputProcessor(GameData.INPUT_ADAPTERS.get("GAME"));
+		world.step(delta);
 	}
 
 	@Override
@@ -62,16 +70,6 @@ public final class GameScreen extends Screen {
 		this.batch.setProjectionMatrix(this.getGameData().getCamera().combined);
 		this.getGameData().render(batch);
 		this.batch.end();
-	}
-
-	private void updateCamera() {
-		// Update Camera
-		getData().getCamera().position.x = player.getPos().getX();
-		getData().getCamera().position.y = player.getPos().getY();
-	}
-
-	private void handleInput() {
-		Gdx.input.setInputProcessor(GameData.INPUT_ADAPTERS.get("GAME"));
 	}
 
 	// Getters and Setters

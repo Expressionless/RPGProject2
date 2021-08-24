@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
+import helix.annotations.QueueAsset;
 import helix.game.Serializable;
 import helix.gfx.Sprite;
 import helix.utils.io.BinaryReader;
@@ -15,7 +16,6 @@ import helix.utils.io.BinaryWriter;
 import helix.utils.math.Point;
 import helix.utils.math.Rectangle;
 import main.constants.InventoryConstants;
-import main.game.annotations.QueueAsset;
 import main.game.inventory.util.InventoryCursor;
 import main.game.item.ItemInfo;
 

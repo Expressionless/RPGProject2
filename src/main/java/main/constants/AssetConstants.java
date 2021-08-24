@@ -1,6 +1,6 @@
 package main.constants;
 
-import main.game.annotations.QueueAsset;
+import helix.annotations.QueueAsset;
 
 public class AssetConstants {
 	// Items resource path

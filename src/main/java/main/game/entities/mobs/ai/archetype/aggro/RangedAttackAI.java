@@ -52,7 +52,7 @@ public class RangedAttackAI extends ChaseAI {
 			return;
 		
 		mob.setAlarm(CAST_ALARM, (int)mob.getStat("cast_time"), () -> {
-			((RangedEnemy)mob).fireProjectile(mob.getStat("attack"), mob.getStat("proj_speed"), target.getPos());
+			((RangedEnemy<?>)mob).fireProjectile(mob.getStat("attack"), mob.getStat("proj_speed"), target.getPos());
 		});
 	}
 }

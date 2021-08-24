@@ -28,6 +28,7 @@ public final class Chunk implements Serializable {
 		this.entities = new ArrayList<>();
 	}
 
+	// TODO: Stop concurrentmodification error here somehow
 	public void step(float delta) {
 		while(entities.size() > WorldConstants.MAX_ENTITIES_PER_CHUNK)
 			entities.remove(entities.get(entities.size() - 1));

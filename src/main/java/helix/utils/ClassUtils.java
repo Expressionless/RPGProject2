@@ -1,7 +1,6 @@
 package helix.utils;
 
 import java.io.File;
-import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +10,7 @@ public class ClassUtils {
 	public static Set<Class<?>> getClasses() {
 		return getClasses(CLASS_PATH);
 	}
-	
+
 	public static Set<Class<?>> getClasses(String path) {
 		File currentDir = new File(path);
 		Set<String> classNameList = new HashSet<String>();
@@ -27,15 +26,11 @@ public class ClassUtils {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return classList;
 	}
 
 	private static Set<String> getClasses(Set<String> classesList, String path) {
-		// Add all current classes
-		for (String clazz : classesList)
-			classesList.add(clazz);
-
 		File currentDir = new File(path);
 		if (!currentDir.exists()) {
 			System.err.println("premature return");
@@ -66,33 +61,5 @@ public class ClassUtils {
 		// Remove everything before incl. "java/" and then remove ".java" from the end
 		path = path.substring(index).substring(5).replaceAll("/", ".");
 		return path.substring(0, path.length() - 5);
-	}
-	
-	public static boolean setStatic(Class<?> targetClass, String fieldName, Object val) {
-		Field field;
-		
-		try {
-			field = targetClass.getDeclaredField(fieldName);
-		} catch (NoSuchFieldException | SecurityException e) {
-			e.printStackTrace();
-			return false;
-		}
-		
-		Object old;
-		try {
-			old = field.get(targetClass);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			e.printStackTrace();
-			return false;
-		}
-		
-		try {
-			field.set(old, val);
-		} catch (IllegalArgumentException | IllegalAccessException e) {
-			e.printStackTrace();
-			return false;
-		}
-		
-		return true;
 	}
 }

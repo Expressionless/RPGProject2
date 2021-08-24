@@ -15,7 +15,6 @@ import main.game.screens.LoadScreen;
 public class RpgGame extends BaseGame {
 
 	private Viewport viewport;
-
 	private FPSLogger fps;
 
 	public RpgGame() {
@@ -33,8 +32,8 @@ public class RpgGame extends BaseGame {
 
 	@Override
 	protected void addScreens() {
-		this.getGameData().screens.add(new LoadScreen(this));
-		this.getGameData().screens.add(new GameScreen(this));
+		this.getData().screens.add(new LoadScreen(this));
+		this.getData().screens.add(new GameScreen(this));
 	}
 	
 	@Override
@@ -44,7 +43,7 @@ public class RpgGame extends BaseGame {
 		viewport = new ExtendViewport(ApplicationConstants.CAMERA_WIDTH, ApplicationConstants.CAMERA_HEIGHT, this.getCamera());
 		viewport.apply();
 
-		this.getGameData().setViewport(viewport);
+		this.getData().setViewport(viewport);
 	}
 
 	@Override
@@ -70,7 +69,8 @@ public class RpgGame extends BaseGame {
 	}
 	
 	public void setScreen(int num) {
-		this.setScreen(this.getGameData().screens.get(num));
+		this.setScreen(this.getData().screens.get(num));
 	}
+	
 
 }

@@ -1,11 +1,11 @@
 package main.game.entities.mobs.enemies.mage;
 
+import helix.annotations.QueueAsset;
 import helix.utils.io.BinaryReader;
 import helix.utils.io.BinaryWriter;
 import helix.utils.math.Angle;
 import helix.utils.math.Point;
 import main.game.RpgGame;
-import main.game.annotations.QueueAsset;
 import main.game.entities.mobs.RangedEnemy;
 import main.game.entities.mobs.ai.archetype.aggro.RangedAttackAI;
 import main.game.entities.projectiles.MageProjectile;

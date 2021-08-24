@@ -2,10 +2,10 @@ package main.game.entities.doodads;
 
 import com.badlogic.gdx.graphics.Texture;
 
+import helix.annotations.QueueAsset;
 import helix.utils.math.Point;
 import main.constants.Constants;
 import main.game.RpgGame;
-import main.game.annotations.QueueAsset;
 import main.game.entities.Doodad;
 
 public class Tree extends Doodad {

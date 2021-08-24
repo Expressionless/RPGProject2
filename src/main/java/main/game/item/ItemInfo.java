@@ -7,7 +7,6 @@ import helix.gfx.Sprite;
 import helix.utils.io.BinaryReader;
 import helix.utils.io.BinaryWriter;
 import main.GameData;
-import main.constants.Constants;
 import main.constants.InventoryConstants;
 import main.constants.SerializationConstants;
 
@@ -51,6 +50,7 @@ public final class ItemInfo implements Serializable {
 		this(id, name, InventoryConstants.MAX_STACK, flags);
 	}
 
+	@SuppressWarnings("unused")
 	private ItemInfo(int id, String name) {
 		this(id, name, 0);
 	}

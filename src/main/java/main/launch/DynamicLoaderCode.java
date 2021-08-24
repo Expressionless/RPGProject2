@@ -7,6 +7,7 @@ import java.util.Set;
 
 import helix.utils.ClassUtils;
 
+@SuppressWarnings("unused")
 public class DynamicLoaderCode {
 	public static final String CLASS_PATH = new File("").getAbsolutePath() + "/src/main/java/main";
 

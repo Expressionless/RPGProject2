@@ -8,6 +8,7 @@ import static main.constants.PlayerConstants.UP;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import helix.annotations.QueueAsset;
 import helix.utils.io.BinaryReader;
 import helix.utils.io.BinaryWriter;
 import helix.utils.math.Angle;
@@ -16,7 +17,6 @@ import main.constants.ApplicationConstants;
 import main.constants.InventoryConstants;
 import main.constants.PlayerConstants;
 import main.game.RpgGame;
-import main.game.annotations.QueueAsset;
 import main.game.entities.Mob;
 import main.game.inventory.Inventory;
 import main.game.inventory.Slot;

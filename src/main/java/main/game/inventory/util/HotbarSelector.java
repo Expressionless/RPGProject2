@@ -2,12 +2,12 @@ package main.game.inventory.util;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import helix.annotations.QueueAsset;
 import helix.utils.math.NumberUtils;
 import helix.utils.math.Point;
 import main.constants.InventoryConstants;
 import main.game.Entity;
 import main.game.RpgGame;
-import main.game.annotations.QueueAsset;
 import main.game.inventory.Inventory;
 import main.game.inventory.Slot;
 import main.game.inventory.subtypes.HotbarInventory;

@@ -1,10 +1,10 @@
 package main.game.entities.projectiles;
 
+import helix.annotations.QueueAsset;
 import helix.utils.math.Point;
 import helix.utils.math.Vector2;
 import main.game.RpgGame;
 import main.game.annotations.Damage;
-import main.game.annotations.QueueAsset;
 import main.game.entities.Projectile;
 import main.game.entities.mobs.neutral.Player;
 import main.game.entities.utils.RangedAttackInfo;

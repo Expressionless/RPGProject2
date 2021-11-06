@@ -1,5 +1,7 @@
 package main.game.entities;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import helix.game.GameObject;
 import helix.game.Serializable;
 import helix.utils.math.Point;
@@ -30,6 +32,14 @@ public abstract class Mob extends Entity implements Serializable {
 		
 		// Do this last, always
 		game.getGameData().mobs.add(this);
+	}
+	
+	@Override
+	protected void draw(SpriteBatch batch) {
+		super.draw(batch);
+		if(stats.getStat("health") < stats.getStat("maxHealth")) {
+			
+		}
 	}
 	
 	@Override

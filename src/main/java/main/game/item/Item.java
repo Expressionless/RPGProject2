@@ -64,7 +64,7 @@ public class Item extends Doodad {
 	@Override
 	public void step(float delta) {
 		float XScale = (float) (Math
-				.sin((double) (Data.TICKS + animOffset) / (double) (this.animPeriodOffset)) * 0.2 + 1);
+				.sin((double) (Data.getTicks() + animOffset) / (double) (this.animPeriodOffset)) * 0.2 + 1);
 		float YScale = XScale;
 		// OSCILLATE BETWEEN 0.8 - 1.2
 		if (this.getSprite() != null) {
@@ -81,9 +81,9 @@ public class Item extends Doodad {
 					GenericInventory mainInv = player.getInventory();
 					
 					if (hotbar.add(this.item, this.amount))
-						this.dispose();
+						this.queueDispose();
 					else if(mainInv.add(this.item, this.amount))
-						this.dispose();
+						this.queueDispose();
 				}
 				this.moveTo(this.getGame().getGameData().getPlayer(), AssetConstants.ITEM_SPEED * delta);
 			}

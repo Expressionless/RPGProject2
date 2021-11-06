@@ -1,12 +1,12 @@
 package main.constants;
 
-import helix.utils.math.Vector2;
+import helix.utils.math.Vector2D;
 
 public class UIConstants {
 
 	public static final int UI_DEPTH = -1;
 	
-	public static Vector2 BAR_SCALE = new Vector2(0.65f, 0.65f);
+	public static Vector2D BAR_SCALE = new Vector2D(0.65f, 0.65f);
 
 	public static final int RAW_BAR_SPRITE_WIDTH = 8;
 	public static final int RAW_BAR_SPRITE_HEIGHT = 12;

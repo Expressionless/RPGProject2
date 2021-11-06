@@ -40,11 +40,12 @@ public abstract class Bar extends UIComponent {
 	 */
 	protected abstract float updateValue();
 	
-	public Bar(GameData gameData, UI ui, Point pos, int barWidth) {
+	public Bar(GameData gameData, UI ui, Point pos, int barWidth, Color barColor) {
 		super(ui, pos);
 
 		this.gameData = gameData;
 		this.barWidth = barWidth;
+		this.barColor = barColor;
 	}
 
 	@Override
@@ -53,11 +54,7 @@ public abstract class Bar extends UIComponent {
 
 	@Override
 	public void render(SpriteBatch batch) {
-		// 188 84 223
-		final float red = 188f;
-		final float green = 84;
-		final float blue = 223;
-		this.renderBar(batch, new Color((float)(red/255f), (float)(green/255f), (float)(blue/255f), 1.0f));
+		this.renderBar(batch, barColor);
 	}
 	
 	private float getSmoothedValue() {

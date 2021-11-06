@@ -32,8 +32,8 @@ public class RpgGame extends BaseGame {
 
 	@Override
 	protected void addScreens() {
-		this.getData().screens.add(new LoadScreen(this));
-		this.getData().screens.add(new GameScreen(this));
+		this.getData().addScreen(new LoadScreen(this));
+		this.getData().addScreen(new GameScreen(this));
 	}
 	
 	@Override
@@ -66,10 +66,6 @@ public class RpgGame extends BaseGame {
 	
 	public RpgGame getRpgGame() {
 		return this;
-	}
-	
-	public void setScreen(int num) {
-		this.setScreen(this.getData().screens.get(num));
 	}
 	
 

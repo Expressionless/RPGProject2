@@ -2,7 +2,7 @@ package main.game.entities.projectiles;
 
 import helix.annotations.QueueAsset;
 import helix.utils.math.Point;
-import helix.utils.math.Vector2;
+import helix.utils.math.Vector2D;
 import main.game.RpgGame;
 import main.game.annotations.Damage;
 import main.game.entities.Projectile;
@@ -35,7 +35,7 @@ public class MageProjectile extends Projectile {
 		
 		if(this.getPos().getDistTo(player.getPos()) < this.getWidth() / 2) {
 			player.subStat("health", this.attack.amount);
-			this.dispose();
+			this.queueDispose();
 			return;
 		}
 		
@@ -54,6 +54,6 @@ public class MageProjectile extends Projectile {
 		
 		
 		if (this.getSprite() != null)
-			this.getSprite().setScale(new Vector2(scaleX, scaleY));
+			this.getSprite().setScale(new Vector2D(scaleX, scaleY));
 	}
 }

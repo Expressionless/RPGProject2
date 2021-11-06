@@ -74,32 +74,32 @@ public class GameInput extends InputAdapter {
 			inv.getSelector().setCurrentSlot(pos, false);
 		}
 		switch (keycode) {
-		case PlayerConstants.KEY_INV:
-			if (player.getInventory().isVisible()) {
-				player.getInventory().setVisible(false);
-			} else {
-				player.getInventory().setVisible(true);
-			}
-			break;
-		case PlayerConstants.KEY_DOWN:
-			player.setMovement(PlayerConstants.DOWN, true);
-			break;
-		case PlayerConstants.KEY_RIGHT:
-			player.setMovement(PlayerConstants.RIGHT, true);
-			break;
-		case PlayerConstants.KEY_LEFT:
-			player.setMovement(PlayerConstants.LEFT, true);
-			break;
-		case PlayerConstants.KEY_UP:
-			player.setMovement(PlayerConstants.UP, true);
-			break;
-
-		case PlayerConstants.KEY_CHARACTER:
-			if (player.getArmour().isVisible())
-				player.getArmour().setVisible(false);
-			else
-				player.getArmour().setVisible(true);
-			break;
+			case PlayerConstants.KEY_INV:
+				if (player.getInventory().isVisible()) {
+					player.getInventory().setVisible(false);
+				} else {
+					player.getInventory().setVisible(true);
+				}
+				break;
+			case PlayerConstants.KEY_DOWN:
+				player.setMovement(PlayerConstants.DOWN, true);
+				break;
+			case PlayerConstants.KEY_RIGHT:
+				player.setMovement(PlayerConstants.RIGHT, true);
+				break;
+			case PlayerConstants.KEY_LEFT:
+				player.setMovement(PlayerConstants.LEFT, true);
+				break;
+			case PlayerConstants.KEY_UP:
+				player.setMovement(PlayerConstants.UP, true);
+				break;
+	
+			case PlayerConstants.KEY_CHARACTER:
+				if (player.getArmour().isVisible())
+					player.getArmour().setVisible(false);
+				else
+					player.getArmour().setVisible(true);
+				break;
 		}
 		return true;
 	}
@@ -107,18 +107,18 @@ public class GameInput extends InputAdapter {
 	@Override
 	public boolean keyUp(int keycode) {
 		switch (keycode) {
-		case PlayerConstants.KEY_DOWN:
-			player.setMovement(PlayerConstants.DOWN, false);
-			break;
-		case PlayerConstants.KEY_RIGHT:
-			player.setMovement(PlayerConstants.RIGHT, false);
-			break;
-		case PlayerConstants.KEY_LEFT:
-			player.setMovement(PlayerConstants.LEFT, false);
-			break;
-		case PlayerConstants.KEY_UP:
-			player.setMovement(PlayerConstants.UP, false);
-			break;
+			case PlayerConstants.KEY_DOWN:
+				player.setMovement(PlayerConstants.DOWN, false);
+				break;
+			case PlayerConstants.KEY_RIGHT:
+				player.setMovement(PlayerConstants.RIGHT, false);
+				break;
+			case PlayerConstants.KEY_LEFT:
+				player.setMovement(PlayerConstants.LEFT, false);
+				break;
+			case PlayerConstants.KEY_UP:
+				player.setMovement(PlayerConstants.UP, false);
+				break;
 		}
 		return true;
 	}
@@ -159,7 +159,7 @@ public class GameInput extends InputAdapter {
 		boolean onGround = !player.getInventory().getBounds().contains(cursor.getPos());
 		System.out.println(player.getInventory().getBounds().toString());
 		System.out.println("Mouse: " + cursor.getPos());
-		if (onGround || !player.getInventory().isVisible())
+		if (onGround || !player.getInventory().isVisible()) {
 			if (cursor.getItem() != null) {
 				ItemSpawner is = new ItemSpawner(getRpgGame());
 				is.spawnItem(cursor.getPos().copy(), cursor.getItem().ID, cursor.getAmount());
@@ -167,7 +167,8 @@ public class GameInput extends InputAdapter {
 				cursor.setItem(null);
 				return true;
 			}
-
+		}
+		
 		// Interaction is done
 		return true;
 	}

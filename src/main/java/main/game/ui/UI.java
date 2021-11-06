@@ -17,6 +17,10 @@ public class UI {
 	public final RpgGame game;
 	
 	public final GameData gameData;
+	// 188 84 223
+	public static final float RED = 188f;
+	public static final float GREEN = 84;
+	public static final float BLUE = 223;
 	
 	public UI(RpgGame game) {
 		this.components = new HashMap<>();
@@ -38,7 +42,7 @@ public class UI {
 	private class HealthBar extends Bar {
 
 		public HealthBar(GameData gameData, UI ui, Point pos) {
-			super(gameData, ui, pos, UIConstants.HEALTH_BAR_WIDTH);
+			super(gameData, ui, pos, UIConstants.HEALTH_BAR_WIDTH, new Color(RED, GREEN, BLUE, 1.0f));
 			this.setBarColor(new Color(1.0f, 0.0f, 0.0f, 1.0f));
 		}
 		

@@ -9,9 +9,7 @@ import main.GameData;
 import main.game.RpgGame;
 import main.game.entities.doodads.Tree;
 import main.game.entities.mobs.enemies.mage.Mage;
-import main.game.entities.mobs.neutral.Player;
 import main.game.input.GameInput;
-import main.game.item.ItemSpawner;
 import main.game.ui.UI;
 import main.game.world.World;
 
@@ -29,14 +27,10 @@ public final class GameScreen extends Screen {
 	@Override
 	protected void create() {
 		this.batch = new SpriteBatch();
-		
 		this.world = new World(this.getRpgGame(), 32, 32);
-		
 		this.ui = new UI(this.getRpgGame());
 		this.getGameData().setUI(this.ui);
-
 		this.startWorld();
-		
 	}
 	
 	private void startWorld() {

@@ -19,6 +19,7 @@ import main.constants.PlayerConstants;
 import main.game.RpgGame;
 import main.game.entities.Mob;
 import main.game.inventory.Inventory;
+import main.game.inventory.InventoryBuilder;
 import main.game.inventory.Slot;
 import main.game.inventory.subtypes.ArmourInventory;
 import main.game.inventory.subtypes.GenericInventory;
@@ -68,11 +69,13 @@ public class Player extends Mob {
 		equipPos.setX(equipPos.getX() - Slot.SPRITE.getWidth() * 2.5f - InventoryConstants.INVENTORY_MARGIN);
 		equipPos.setY(equipPos.getY());
 
-		this.equipped = new GenericInventory(game, equipPos, 2, 1);
-		this.equipped.clearAllowedTypes();
-		this.equipped.addAllowedTypes("WEAPON", "TOOL");
-		this.equipped.setVisible(true);
-
+		this.equipped = new InventoryBuilder(game)
+				.setScreenPos(equipPos)
+				.setSize(2, 1)
+				.setAllowedTypes("WEAPON", "TOOL")
+				.setVisible(true)
+				.build();
+		
 		this.setStat("speed", PlayerConstants.PLAYER_SPEED);
 		this.setStat("maxHealth", 150);
 

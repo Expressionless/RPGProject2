@@ -8,7 +8,6 @@ import main.game.RpgGame;
 public class Boot {
 
 	public static void main(String[] args) {
-
 		BaseGame game = new RpgGame();
 		new Lwjgl3Application(game, game.config);
 	}

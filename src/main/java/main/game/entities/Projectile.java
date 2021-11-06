@@ -24,7 +24,7 @@ public abstract class Projectile extends Entity {
 	public void step(float delta) {
 		float distRemaining = this.getPos().getDistTo(destination);
 		if(distRemaining < this.getWidth() / 2) {
-			this.dispose();
+			this.queueDispose();
 		}
 		else
 			this.moveTo(destination, attack.speed);

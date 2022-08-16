@@ -8,11 +8,8 @@ import static main.constants.PlayerConstants.UP;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import helix.annotations.QueueAsset;
-import helix.utils.io.BinaryReader;
-import helix.utils.io.BinaryWriter;
-import helix.utils.math.Angle;
-import helix.utils.math.Point;
+import io.sly.helix.annotations.QueueAsset;
+import io.sly.helix.utils.math.Vector2D;
 import main.constants.ApplicationConstants;
 import main.constants.InventoryConstants;
 import main.constants.PlayerConstants;
@@ -43,7 +40,7 @@ public class Player extends Mob {
 	private int anim_duration = 750;
 	private int movement = 0x00;
 
-	public Player(RpgGame game, Point pos) {
+	public Player(RpgGame game, Vector2D pos) {
 		super(game, pos);
 		float x = 40 - ApplicationConstants.CAMERA_WIDTH / 4;
 		float y = 30 - ApplicationConstants.CAMERA_HEIGHT * .6f

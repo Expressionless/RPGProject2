@@ -1,14 +1,15 @@
 package main.game;
 
-import helix.utils.math.Point;
+
+import io.sly.helix.utils.math.Vector2D;
 import main.GameData;
 import main.game.entities.mobs.neutral.Player;
 
-public abstract class Entity extends helix.game.objects.Entity {
+public abstract class Entity extends io.sly.helix.game.objects.Entity {
 
 	private final RpgGame game;
 	
-	public Entity(RpgGame game, Point pos) {
+	public Entity(RpgGame game, Vector2D pos) {
 		super(game.getData(), pos);
 		this.game = game;
 	}

@@ -12,9 +12,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.sly</groupId>
-			<artifactId>helix-engine</artifactId>
-			<version>0.0.1</version>
+			<groupId>io.sly</groupId>
+			<artifactId>helix-gen2</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>

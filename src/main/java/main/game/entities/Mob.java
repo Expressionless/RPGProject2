@@ -2,9 +2,6 @@ package main.game.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import helix.game.GameObject;
-import helix.game.Serializable;
-import helix.utils.math.Point;
 import main.game.Entity;
 import main.game.RpgGame;
 import main.game.entities.mobs.ai.AI;
@@ -17,7 +14,7 @@ public abstract class Mob extends Entity implements Serializable {
 	
 	private final MobStats stats;
 	
-	private Point destination;
+	private Vector2D destination;
 	
 	/**
 	 * AI to control the mob. 
@@ -25,7 +22,7 @@ public abstract class Mob extends Entity implements Serializable {
 	protected AI ai;
 	protected abstract void updateSprite();
 	
-	public Mob(RpgGame game, Point pos) {
+	public Mob(RpgGame game, Vector2D pos) {
 		super(game, pos);
 		this.stats = new MobStats();
 		this.destination = pos.copy();

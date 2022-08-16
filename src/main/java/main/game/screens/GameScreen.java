@@ -3,8 +3,9 @@ package main.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import helix.gfx.Screen;
-import helix.utils.math.Point;
+import io.sly.helix.game.BaseGame;
+import io.sly.helix.gfx.Screen;
+import io.sly.helix.utils.math.Vector2D;
 import main.GameData;
 import main.game.RpgGame;
 import main.game.entities.doodads.Tree;
@@ -20,7 +21,7 @@ public final class GameScreen extends Screen {
 	
 	private SpriteBatch batch;
 
-	public GameScreen(RpgGame game) {
+	public GameScreen(BaseGame game) {
 		super(game);
 	}
 
@@ -34,12 +35,12 @@ public final class GameScreen extends Screen {
 	}
 	
 	private void startWorld() {
-		world.spawnPlayer(new Point(30, 30));
+		world.spawnPlayer(new Vector2D(30, 30));
 		
 		world.itemSpawner.spawnItem(50, 20, "grass", 5);
-		world.spawnEntity(Tree.class, new Point(100, 80));
+		world.spawnEntity(Tree.class, new Vector2D(100, 80));
 
-		world.spawnMob(Mage.class, new Point(140, 40));
+		world.spawnMob(Mage.class, new Vector2D(140, 40));
 
 		initInputs();
 	}

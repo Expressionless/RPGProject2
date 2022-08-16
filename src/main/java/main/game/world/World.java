@@ -8,6 +8,7 @@ import helix.game.Serializable;
 import helix.utils.io.BinaryReader;
 import helix.utils.io.BinaryWriter;
 import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.constants.WorldConstants;
 import main.game.Entity;
 import main.game.RpgGame;
@@ -50,7 +51,7 @@ public final class World implements Serializable {
 	 * @param pos
 	 * @return
 	 */
-	public Player spawnPlayer(Point pos) {
+	public Player spawnPlayer(Vector2D pos) {
 		if(this.player != null)
 			log.warning("PLAYER IS ALREADY CREATED IN WORLD: " + this.toString());
 		this.player =  (Player)this.spawnMob(Player.class, pos);
@@ -59,11 +60,11 @@ public final class World implements Serializable {
 	
 	
 	
-	public <T extends Entity> T spawnEntity(Class<T> entityType, Point pos) {
+	public <T extends Entity> T spawnEntity(Class<T> entityType, Vector2D pos) {
 		Constructor<T> constructor;
 
 		try {
-			constructor = entityType.getConstructor(RpgGame.class, Point.class);
+			constructor = entityType.getConstructor(RpgGame.class, Vector2D.class);
 		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 			return null;
@@ -79,11 +80,11 @@ public final class World implements Serializable {
 		return newEntity;
 	}
 
-	public <T extends Mob> T spawnMob(Class<T> mobType, Point pos) {
+	public <T extends Mob> T spawnMob(Class<T> mobType, Vector2D pos) {
 		Constructor<T> constructor;
 
 		try {
-			constructor = mobType.getConstructor(RpgGame.class, Point.class);
+			constructor = mobType.getConstructor(RpgGame.class, Vector2D.class);
 		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 			return null;

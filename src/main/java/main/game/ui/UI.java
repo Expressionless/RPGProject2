@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.GameData;
 import main.constants.UIConstants;
 import main.game.RpgGame;
@@ -27,7 +27,7 @@ public class UI {
 		this.game = game;
 		this.gameData = game.getGameData();
 		
-		Point healthbarPos = new Point(UIConstants.HEALTH_BAR_X, UIConstants.HEALTH_BAR_Y);
+		Vector2D healthbarPos = new Vector2D(UIConstants.HEALTH_BAR_X, UIConstants.HEALTH_BAR_Y);
 		this.addComponent("heatlh_bar", new HealthBar(gameData, this, healthbarPos));
 	}
 	
@@ -41,7 +41,7 @@ public class UI {
 	
 	private class HealthBar extends Bar {
 
-		public HealthBar(GameData gameData, UI ui, Point pos) {
+		public HealthBar(GameData gameData, UI ui, Vector2D pos) {
 			super(gameData, ui, pos, UIConstants.HEALTH_BAR_WIDTH, new Color(RED, GREEN, BLUE, 1.0f));
 			this.setBarColor(new Color(1.0f, 0.0f, 0.0f, 1.0f));
 		}

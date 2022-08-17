@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import io.sly.helix.annotations.QueueAsset;
+import io.sly.helix.utils.io.BinaryReader;
+import io.sly.helix.utils.io.BinaryWriter;
+import io.sly.helix.utils.math.Angle;
 import io.sly.helix.utils.math.Vector2D;
 import main.constants.ApplicationConstants;
 import main.constants.InventoryConstants;
@@ -45,7 +48,7 @@ public class Player extends Mob {
 		float x = 40 - ApplicationConstants.CAMERA_WIDTH / 4;
 		float y = 30 - ApplicationConstants.CAMERA_HEIGHT * .6f
 				+ Slot.SPRITE.getHeight() * (PlayerConstants.P_INV_HEIGHT + 1);
-		GenericInventory newInv = new GenericInventory(game, new Point(x, y), PlayerConstants.P_INV_WIDTH,
+		GenericInventory newInv = new GenericInventory(game, new Vector2D(x, y), PlayerConstants.P_INV_WIDTH,
 				PlayerConstants.P_INV_HEIGHT);
 		this.setInventory(newInv);
 
@@ -54,15 +57,15 @@ public class Player extends Mob {
 		this.addSprite(PLAYER_UP, 4, anim_duration);
 
 		this.hotbar = new HotbarInventory(game,
-				new Point(40 - ApplicationConstants.CAMERA_WIDTH / 4, 30 - ApplicationConstants.CAMERA_HEIGHT * .6f));
+				new Vector2D(40 - ApplicationConstants.CAMERA_WIDTH / 4, 30 - ApplicationConstants.CAMERA_HEIGHT * .6f));
 		this.hotbar.setVisible(true);
 
-		Point armourPos = this.getInventory().getPos().copy();
+		Vector2D armourPos = this.getInventory().getPos().copy();
 		armourPos.setX(armourPos.getX() - Slot.SPRITE.getWidth() - InventoryConstants.INVENTORY_MARGIN);
 		armourPos.setY(armourPos.getY() - Slot.SPRITE.getHeight());
 		this.armour = new ArmourInventory(game, armourPos);
 
-		Point equipPos = this.getHotbar().getPos().copy();
+		Vector2D equipPos = this.getHotbar().getPos().copy();
 		equipPos.setX(equipPos.getX() - Slot.SPRITE.getWidth() * 2.5f - InventoryConstants.INVENTORY_MARGIN);
 		equipPos.setY(equipPos.getY());
 

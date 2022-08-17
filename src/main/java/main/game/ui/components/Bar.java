@@ -5,11 +5,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
-import helix.annotations.QueueAsset;
-import helix.gfx.Sprite;
-import helix.gfx.SpriteSheet;
-import helix.utils.math.NumberUtils;
-import helix.utils.math.Point;
+import io.sly.helix.annotations.QueueAsset;
+import io.sly.helix.gfx.Sprite;
+import io.sly.helix.gfx.SpriteSheet;
+import io.sly.helix.utils.math.NumberUtils;
+import io.sly.helix.utils.math.Vector2D;
 import main.GameData;
 import main.constants.ApplicationConstants;
 import main.constants.UIConstants;
@@ -40,7 +40,7 @@ public abstract class Bar extends UIComponent {
 	 */
 	protected abstract float updateValue();
 	
-	public Bar(GameData gameData, UI ui, Point pos, int barWidth, Color barColor) {
+	public Bar(GameData gameData, UI ui, Vector2D pos, int barWidth, Color barColor) {
 		super(ui, pos);
 
 		this.gameData = gameData;
@@ -70,7 +70,7 @@ public abstract class Bar extends UIComponent {
 		float x = this.getPos().getX() + camPos.x - ApplicationConstants.CAMERA_WIDTH / 2;
 		float y = this.getPos().getY() + camPos.y + ApplicationConstants.CAMERA_HEIGHT / 2 - center_disp.getHeight();
 		
-		Point topLeft = new Point(x, y);
+		Vector2D topLeft = new Vector2D(x, y);
 		
 		float value = this.getSmoothedValue() * UIConstants.HEALTH_BAR_WIDTH * UIConstants.ADJUSTED_BAR_SPRITE_WIDTH;
 		

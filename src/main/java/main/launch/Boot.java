@@ -2,7 +2,7 @@ package main.launch;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 
-import helix.game.BaseGame;
+import io.sly.helix.game.BaseGame;
 import main.game.RpgGame;
 
 public class Boot {

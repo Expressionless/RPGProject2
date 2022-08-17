@@ -4,10 +4,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
 
-import helix.game.Serializable;
-import helix.utils.io.BinaryReader;
-import helix.utils.io.BinaryWriter;
-import helix.utils.math.Point;
+import io.sly.helix.utils.io.BinaryReader;
+import io.sly.helix.utils.io.BinaryWriter;
+import io.sly.helix.utils.io.Serializable;
 import io.sly.helix.utils.math.Vector2D;
 import main.constants.WorldConstants;
 import main.game.Entity;

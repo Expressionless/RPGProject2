@@ -1,12 +1,12 @@
 package main.game.inventory.subtypes;
 
-import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.RpgGame;
 import main.game.inventory.Inventory;
 
 public class GenericInventory extends Inventory {
 
-	public GenericInventory(RpgGame game, Point screenPos, int w, int h) {
+	public GenericInventory(RpgGame game, Vector2D screenPos, int w, int h) {
 		super(game, screenPos, w, h);
 		this.resetAllowedTypes();
 	}

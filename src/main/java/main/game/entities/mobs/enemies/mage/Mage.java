@@ -1,10 +1,10 @@
 package main.game.entities.mobs.enemies.mage;
 
-import helix.annotations.QueueAsset;
-import helix.utils.io.BinaryReader;
-import helix.utils.io.BinaryWriter;
-import helix.utils.math.Angle;
-import helix.utils.math.Point;
+import io.sly.helix.annotations.QueueAsset;
+import io.sly.helix.utils.io.BinaryReader;
+import io.sly.helix.utils.io.BinaryWriter;
+import io.sly.helix.utils.math.Angle;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.RpgGame;
 import main.game.entities.mobs.RangedEnemy;
 import main.game.entities.mobs.ai.archetype.aggro.RangedAttackAI;
@@ -17,7 +17,7 @@ public class Mage extends RangedEnemy<MageProjectile> {
 	@QueueAsset(ref = "res/sprites/mob/enemy/mage/tiny_mage_right.png")
 	public static String MAGE_DOWN;
 
-	public Mage(RpgGame game, Point pos) {
+	public Mage(RpgGame game, Vector2D pos) {
 		super(game, MageProjectile.class, pos);
 		this.addSprite(MAGE_UP, 4, 750);
 		this.addSprite(MAGE_DOWN, 4, 750);

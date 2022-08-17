@@ -2,10 +2,10 @@ package main.game.item;
 
 import java.util.Random;
 
-import helix.game.Data;
-import helix.gfx.Sprite;
-import helix.gfx.SpriteSheet;
-import helix.utils.math.Point;
+import io.sly.helix.game.Data;
+import io.sly.helix.gfx.Sprite;
+import io.sly.helix.gfx.SpriteSheet;
+import io.sly.helix.utils.math.Vector2D;
 import main.constants.AssetConstants;
 import main.constants.PlayerConstants;
 import main.game.RpgGame;
@@ -24,7 +24,7 @@ public class Item extends Doodad {
 
 	public final ItemInfo item;
 
-	public Item(RpgGame game, Point pos, int itemID, int amount) {
+	public Item(RpgGame game, Vector2D pos, int itemID, int amount) {
 		super(game, pos);
 		this.item = ItemInfo.get(itemID);
 		this.attachItemSprite();
@@ -38,7 +38,7 @@ public class Item extends Doodad {
 		this.amount = amount;
 	}
 
-	public Item(RpgGame game, Point pos, String itemName) {
+	public Item(RpgGame game, Vector2D pos, String itemName) {
 		this(game, pos, ItemInfo.idOf(itemName), 1);
 	}
 

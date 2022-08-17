@@ -1,6 +1,6 @@
 package main.game.ui;
 
-import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.GameData;
 import main.game.Entity;
 
@@ -30,7 +30,7 @@ public abstract class UIComponent extends Entity {
 	 * @param ui
 	 * @param pos
 	 */
-	public UIComponent(UI ui, Point pos) {
+	public UIComponent(UI ui, Vector2D pos) {
 		super(ui.game, pos);
 		this.ui = ui;
 		

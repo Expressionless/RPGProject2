@@ -7,12 +7,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
-import helix.game.GameObject;
-import helix.game.Serializable;
-import helix.utils.io.BinaryReader;
-import helix.utils.io.BinaryWriter;
-import helix.utils.math.Point;
-import helix.utils.math.Rectangle;
+import io.sly.helix.game.entities.GameObject;
+import io.sly.helix.utils.io.BinaryReader;
+import io.sly.helix.utils.io.BinaryWriter;
+import io.sly.helix.utils.io.Serializable;
+import io.sly.helix.utils.math.Rectangle;
+import io.sly.helix.utils.math.Vector2D;
 import main.GameData;
 import main.constants.ApplicationConstants;
 import main.constants.InventoryConstants;
@@ -37,7 +37,7 @@ public abstract class Inventory extends GameObject implements Serializable {
 	private final Slot[][] slots;
 	
 	private boolean visible;
-	private Point screenPos;
+	private Vector2D screenPos;
 	private Rectangle bounds;
 	
 	private RpgGame game;
@@ -45,8 +45,8 @@ public abstract class Inventory extends GameObject implements Serializable {
 
 	public abstract Inventory copy();
 	
-	public Inventory(RpgGame game, Point screenPos, int w, int h) {
-		super(game.getGameData(), screenPos);
+	public Inventory(RpgGame game, Vector2D screenPos, int w, int h) {
+		super(game.getData(), screenPos);
 		this.visible = false;
 		this.slots = new Slot[h][w];
 		this.screenPos = screenPos;
@@ -59,7 +59,7 @@ public abstract class Inventory extends GameObject implements Serializable {
 	}
 	
 	public Inventory(RpgGame game, int w, int h) {
-		this(game, new Point(INV_X, INV_Y), w, h);
+		this(game, new Vector2D(INV_X, INV_Y), w, h);
 	}
 	
 	public void step(float delta) {
@@ -154,7 +154,7 @@ public abstract class Inventory extends GameObject implements Serializable {
 			y = this.getPos().getY() - column * (Slot.SPRITE.getHeight() + InventoryConstants.INVENTORY_MARGIN);
 			for(row = 0; row < w; row++) {
 				x = this.getPos().getX() + row * (Slot.SPRITE.getWidth() + InventoryConstants.INVENTORY_MARGIN);
-				slots[column][row] = new Slot(this, new Point(x, y), h * column + row);
+				slots[column][row] = new Slot(this, new Vector2D(x, y), h * column + row);
 			}
 		}
 	}
@@ -279,11 +279,11 @@ public abstract class Inventory extends GameObject implements Serializable {
 	}
 	
 	@Override
-	public Point getPos() {
-		return new Point(bounds.getX(), bounds.getY());
+	public Vector2D getPos() {
+		return new Vector2D(bounds.getX(), bounds.getY());
 	}
 	
-	public Point getScreenPos() {
+	public Vector2D getScreenPos() {
 		return screenPos;
 	}
 

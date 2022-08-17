@@ -2,6 +2,9 @@ package main.game.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import io.sly.helix.game.entities.GameObject;
+import io.sly.helix.utils.io.Serializable;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.Entity;
 import main.game.RpgGame;
 import main.game.entities.mobs.ai.AI;
@@ -178,11 +181,11 @@ public abstract class Mob extends Entity implements Serializable {
 		this.inventory = inv;
 	}
 	
-	public Point getDest() {
+	public Vector2D getDest() {
 		return destination;
 	}
 	
-	public void setDest(Point point) {
+	public void setDest(Vector2D point) {
 		this.destination = point;
 	}
 	

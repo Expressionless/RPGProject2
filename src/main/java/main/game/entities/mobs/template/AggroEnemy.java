@@ -1,14 +1,14 @@
 package main.game.entities.mobs.template;
 
-import helix.utils.io.BinaryReader;
-import helix.utils.io.BinaryWriter;
-import helix.utils.math.Point;
+import io.sly.helix.utils.io.BinaryReader;
+import io.sly.helix.utils.io.BinaryWriter;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.RpgGame;
 import main.game.entities.mobs.Enemy;
 
 public abstract class AggroEnemy extends Enemy {
 
-	public AggroEnemy(RpgGame game, Point pos) {
+	public AggroEnemy(RpgGame game, Vector2D pos) {
 		super(game, pos);
 	}
 

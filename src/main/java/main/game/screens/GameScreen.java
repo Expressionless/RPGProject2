@@ -58,8 +58,8 @@ public final class GameScreen extends Screen {
 
 	@Override
 	protected void draw(float delta) {
-		this.getGameData().update(delta);
-		this.getGameData().getCamera().update();
+		this.getData().update(delta);
+		this.getData().getCamera().update();
 
 		this.batch.begin();
 		this.batch.setProjectionMatrix(this.getGameData().getCamera().combined);

@@ -1,12 +1,12 @@
 package main.game.entities;
 
-import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.Entity;
 import main.game.RpgGame;
 
 public abstract class Doodad extends Entity {
 
-	public Doodad(RpgGame game, Point pos) {
+	public Doodad(RpgGame game, Vector2D pos) {
 		super(game, pos);
 	}
 }

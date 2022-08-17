@@ -2,10 +2,10 @@ package main.game.item;
 
 import java.util.logging.Logger;
 
-import helix.game.Serializable;
-import helix.gfx.Sprite;
-import helix.utils.io.BinaryReader;
-import helix.utils.io.BinaryWriter;
+import io.sly.helix.gfx.Sprite;
+import io.sly.helix.utils.io.BinaryReader;
+import io.sly.helix.utils.io.BinaryWriter;
+import io.sly.helix.utils.io.Serializable;
 import main.GameData;
 import main.constants.InventoryConstants;
 import main.constants.SerializationConstants;

@@ -1,7 +1,7 @@
 package main.game.screens;
 
-import helix.game.BaseGame;
-import helix.gfx.Screen;
+import io.sly.helix.game.BaseGame;
+import io.sly.helix.gfx.Screen;
 
 public class MenuScreen extends Screen {
 

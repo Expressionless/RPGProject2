@@ -1,8 +1,8 @@
 package main.game.entities.projectiles;
 
-import helix.annotations.QueueAsset;
-import helix.utils.math.Point;
-import helix.utils.math.Vector2D;
+
+import io.sly.helix.annotations.QueueAsset;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.RpgGame;
 import main.game.annotations.Damage;
 import main.game.entities.Projectile;
@@ -23,7 +23,7 @@ public class MageProjectile extends Projectile {
 	@QueueAsset(ref = "res/sprites/projectile/mage_ball.png")
 	public static String SPRITE_REF;
 
-	public MageProjectile(RpgGame game, RangedAttackInfo attack, Point pos, Point destination) {
+	public MageProjectile(RpgGame game, RangedAttackInfo attack, Vector2D pos, Vector2D destination) {
 		super(game, attack, pos, destination, SPRITE_REF);
 		
 		player = this.getPlayer();

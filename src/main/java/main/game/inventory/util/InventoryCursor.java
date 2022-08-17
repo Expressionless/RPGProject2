@@ -2,7 +2,7 @@ package main.game.inventory.util;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.Entity;
 import main.game.RpgGame;
 import main.game.inventory.Slot;
@@ -16,7 +16,7 @@ public final class InventoryCursor extends Entity {
 	private boolean quickShift = false;
 
 	public InventoryCursor(RpgGame game) {
-		super(game, new Point(0, 0));
+		super(game, new Vector2D(0, 0));
 		this.item = null;
 		this.amount = 0;
 	}

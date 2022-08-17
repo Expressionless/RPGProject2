@@ -2,9 +2,9 @@ package main.game.inventory.util;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import helix.annotations.QueueAsset;
-import helix.utils.math.NumberUtils;
-import helix.utils.math.Point;
+import io.sly.helix.annotations.QueueAsset;
+import io.sly.helix.utils.math.NumberUtils;
+import io.sly.helix.utils.math.Vector2D;
 import main.constants.InventoryConstants;
 import main.game.Entity;
 import main.game.RpgGame;
@@ -21,7 +21,7 @@ public class HotbarSelector extends Entity {
 	private HotbarInventory focusedInventory;
 	private int currentSlot = 5;
 	
-	public HotbarSelector(RpgGame game, Point pos, HotbarInventory inventory) {
+	public HotbarSelector(RpgGame game, Vector2D pos, HotbarInventory inventory) {
 		super(game, pos);
 		this.focusedInventory = inventory;
 		this.addSprite(SPRITE_REF);

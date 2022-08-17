@@ -1,14 +1,15 @@
 package main.game.world;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import helix.game.Serializable;
-import helix.utils.io.BinaryReader;
-import helix.utils.io.BinaryWriter;
-import helix.utils.math.Point;
-import helix.utils.math.Rectangle;
+import io.sly.helix.utils.io.BinaryReader;
+import io.sly.helix.utils.io.BinaryWriter;
+import io.sly.helix.utils.io.Serializable;
+import io.sly.helix.utils.math.Rectangle;
+import io.sly.helix.utils.math.Vector2D;
 import main.constants.WorldConstants;
 import main.game.Entity;
 import main.game.RpgGame;
@@ -16,9 +17,9 @@ import main.game.RpgGame;
 public final class Chunk implements Serializable {
 
 	private Rectangle bounds;
-	private ArrayList<Entity> entities;
+	private List<Entity> entities;
 
-	public Chunk(RpgGame game, Point pos) {
+	public Chunk(RpgGame game, Vector2D pos) {
 		this(game, pos.getX(), pos.getY());
 	}
 

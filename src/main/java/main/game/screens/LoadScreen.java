@@ -1,6 +1,7 @@
 package main.game.screens;
 
-import helix.gfx.Screen;
+import io.sly.helix.game.Data;
+import io.sly.helix.gfx.Screen;
 import main.GameData;
 import main.constants.SerializationConstants;
 import main.game.RpgGame;
@@ -14,7 +15,7 @@ public class LoadScreen extends Screen {
 	
 	@Override
 	public void show() {
-		this.parseItems(this.getGameData());
+		this.parseItems(this.getData());
 		
 		this.getRpgGame().setScreen(1);
 	}
@@ -29,7 +30,7 @@ public class LoadScreen extends Screen {
 		
 	}
 
-	private void parseItems(GameData gameData) {
+	private void parseItems(Data gameData) {
 		gameData.beginReading("/data/item");
 		
 		int itemsToParse = gameData.getReader().getBytes().size() / SerializationConstants.ITEM_SIZE;

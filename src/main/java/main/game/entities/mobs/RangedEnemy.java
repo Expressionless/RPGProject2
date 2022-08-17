@@ -2,7 +2,7 @@ package main.game.entities.mobs;
 
 import java.lang.reflect.InvocationTargetException;
 
-import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.RpgGame;
 import main.game.annotations.Damage;
 import main.game.entities.Projectile;
@@ -16,13 +16,13 @@ public abstract class RangedEnemy<T extends Projectile> extends Enemy {
 
 	private boolean can_shoot = true;
 	
-	public RangedEnemy(RpgGame game, Class<T> projectileClass, Point pos) {
+	public RangedEnemy(RpgGame game, Class<T> projectileClass, Vector2D pos) {
 		super(game, pos);
 		
 		this.projectileType = projectileClass;
 	}
 	
-	public boolean fireProjectile(float damage, float speed, Point destination) {
+	public boolean fireProjectile(float damage, float speed, Vector2D destination) {
 		if(!can_shoot) {
 			return false;
 		} else {
@@ -37,7 +37,7 @@ public abstract class RangedEnemy<T extends Projectile> extends Enemy {
 		}
 	}
 	
-	private Projectile createProjectile(float damage, float speed, Point destination) {
+	private Projectile createProjectile(float damage, float speed, Vector2D destination) {
 		Projectile newProjectile = null;
 		
 		// TODO: Potentially make projectiles based on range instead of destination
@@ -48,7 +48,7 @@ public abstract class RangedEnemy<T extends Projectile> extends Enemy {
 		
 		RangedAttackInfo attack = new RangedAttackInfo(projectileDamageType, damage, speed);
 		try {
-			newProjectile = projectileType.getDeclaredConstructor(RpgGame.class, RangedAttackInfo.class, Point.class, Point.class).newInstance(this.getGame(), attack, this.getPos(), destination);
+			newProjectile = projectileType.getDeclaredConstructor(RpgGame.class, RangedAttackInfo.class, Vector2D.class, Vector2D.class).newInstance(this.getGame(), attack, this.getPos(), destination);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| NoSuchMethodException | SecurityException e) {
 			System.err.println("Error creating projectile from: " + projectileType.getCanonicalName());

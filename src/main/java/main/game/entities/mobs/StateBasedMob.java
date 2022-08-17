@@ -1,6 +1,6 @@
 package main.game.entities.mobs;
 
-import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.RpgGame;
 import main.game.entities.Mob;
 import main.game.entities.mobs.ai.state.MobState;
@@ -10,7 +10,7 @@ import main.game.entities.mobs.ai.state.StateMachine;
 public abstract class StateBasedMob extends Mob {
 	private final StateMachine stateMachine;
 
-	public StateBasedMob(RpgGame game, Point pos) {
+	public StateBasedMob(RpgGame game, Vector2D pos) {
 		super(game, pos);
 		this.stateMachine = new StateMachine();	
 	}

@@ -8,13 +8,13 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
-import helix.annotations.QueueAsset;
-import helix.game.Serializable;
-import helix.gfx.Sprite;
-import helix.utils.io.BinaryReader;
-import helix.utils.io.BinaryWriter;
-import helix.utils.math.Point;
-import helix.utils.math.Rectangle;
+import io.sly.helix.annotations.QueueAsset;
+import io.sly.helix.gfx.Sprite;
+import io.sly.helix.utils.io.BinaryReader;
+import io.sly.helix.utils.io.BinaryWriter;
+import io.sly.helix.utils.io.Serializable;
+import io.sly.helix.utils.math.Rectangle;
+import io.sly.helix.utils.math.Vector2D;
 import main.constants.InventoryConstants;
 import main.game.inventory.util.InventoryCursor;
 import main.game.item.ItemInfo;
@@ -40,9 +40,9 @@ public class Slot implements Serializable {
 	
 	private Rectangle bounds;
 	
-	private final Point screenPos;
+	private final Vector2D screenPos;
 	
-	public Slot(Inventory inventory, Point pos, int id, ItemInfo item, int amount) {
+	public Slot(Inventory inventory, Vector2D pos, int id, ItemInfo item, int amount) {
 		this.inventory = inventory;
 		this.slotID = id;
 		this.item = item;
@@ -53,7 +53,7 @@ public class Slot implements Serializable {
 		this.bounds = new Rectangle(pos.getX(), pos.getY(), SPRITE.getWidth(), SPRITE.getHeight());
 	}
 	
-	public Slot(Inventory inventory, Point pos, int id) {
+	public Slot(Inventory inventory, Vector2D pos, int id) {
 		this(inventory, pos, id, null, 0);
 	}
 	
@@ -64,7 +64,7 @@ public class Slot implements Serializable {
 			this.amount = 0;
 		
 		// Track the screen
-		Vector3 camera = inventory.getGameData().getCamera().position;
+		Vector3 camera = inventory.getData().getCamera().position;
 		this.getBounds().setX(screenPos.getX() + camera.x);
 		this.getBounds().setY(screenPos.getY() + camera.y);
 	}
@@ -83,7 +83,7 @@ public class Slot implements Serializable {
 				inventoryFont.draw(b, string, x + SPRITE.getWidth() - 3, y + 3);
 			}
 			
-			InventoryCursor inv = inventory.getGameData().getCursor();
+			InventoryCursor inv = inventory.getData().getCursor();
 			if(inv != null && this.isCursorOver()) {
 				inventoryFont.draw(b, item.name + "\n" + this.getItem().type, inv.getPos().getX(), inv.getPos().getY());
 			}
@@ -175,8 +175,8 @@ public class Slot implements Serializable {
 		return inventory;
 	}
 	
-	public Point getPos() {
-		return new Point(bounds.getX(), bounds.getY());
+	public Vector2D getPos() {
+		return new Vector2D(bounds.getX(), bounds.getY());
 	}
 	
 	public String toString() {

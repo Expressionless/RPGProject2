@@ -1,12 +1,12 @@
 package main.game.entities;
 
-import helix.game.Data;
-import helix.game.objects.Entity;
-import helix.utils.math.Point;
+import io.sly.helix.game.Data;
+import io.sly.helix.game.entities.Entity;
+import io.sly.helix.utils.math.Vector2D;
 
 public class Tile extends Entity {
 
-	public Tile(Data gameData, Point pos) {
+	public Tile(Data gameData, Vector2D pos) {
 		super(gameData, pos);
 	}
 

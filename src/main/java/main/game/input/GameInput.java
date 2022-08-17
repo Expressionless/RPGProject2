@@ -1,9 +1,11 @@
 package main.game.input;
 
 import com.badlogic.gdx.Input.Keys;
+
+import io.sly.helix.utils.math.Vector2D;
+
 import com.badlogic.gdx.InputAdapter;
 
-import helix.utils.math.Point;
 import main.GameData;
 import main.constants.PlayerConstants;
 import main.game.RpgGame;
@@ -125,7 +127,7 @@ public class GameInput extends InputAdapter {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		Point p = getGameData().toGameCoords(screenX, screenY);
+		Vector2D p = getData().toGameCoords(screenX, screenY);
 		getGameData().getCursor().getPos().setX(p.getX());// + screenX / Constants.RATIO_X);
 		getGameData().getCursor().getPos().setY(p.getY());// - screenY / Constants.RATIO_Y);
 		return true;

@@ -1,13 +1,13 @@
 package main.game.inventory;
 
-import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.RpgGame;
 import main.game.inventory.subtypes.GenericInventory;
 
 public class InventoryBuilder {
 
 	private boolean visible;
-	private Point screenPos;
+	private Vector2D screenPos;
 	private int width, height;
 	
 	private String[] allowedTypes;
@@ -23,7 +23,7 @@ public class InventoryBuilder {
 		return this;
 	}
 	
-	public InventoryBuilder setScreenPos(Point screenPos) {
+	public InventoryBuilder setScreenPos(Vector2D screenPos) {
 		this.screenPos = screenPos.copy();
 		return this;
 	}

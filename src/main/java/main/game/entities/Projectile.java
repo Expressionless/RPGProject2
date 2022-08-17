@@ -1,6 +1,6 @@
 package main.game.entities;
 
-import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.Entity;
 import main.game.RpgGame;
 import main.game.entities.utils.RangedAttackInfo;
@@ -9,9 +9,9 @@ import main.game.enums.DamageType;
 public abstract class Projectile extends Entity {
 
 	public final RangedAttackInfo attack;
-	public final Point destination;
+	public final Vector2D destination;
 	
-	public Projectile(RpgGame game, RangedAttackInfo attack, Point pos, Point destination, String spriteName) {
+	public Projectile(RpgGame game, RangedAttackInfo attack, Vector2D pos, Vector2D destination, String spriteName) {
 		super(game, pos);
 		
 		this.destination = destination;

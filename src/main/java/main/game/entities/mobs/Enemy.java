@@ -1,6 +1,6 @@
 package main.game.entities.mobs;
 
-import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.RpgGame;
 import main.game.entities.Mob;
 
@@ -8,7 +8,7 @@ public abstract class Enemy extends Mob {
 
 	private String type;
 	
-	public Enemy(RpgGame game, Point pos) {
+	public Enemy(RpgGame game, Vector2D pos) {
 		super(game, pos); 
 	}
 	

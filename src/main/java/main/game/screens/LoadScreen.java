@@ -1,6 +1,5 @@
 package main.game.screens;
 
-import io.sly.helix.game.Data;
 import io.sly.helix.gfx.Screen;
 import main.GameData;
 import main.constants.SerializationConstants;
@@ -15,7 +14,7 @@ public class LoadScreen extends Screen {
 	
 	@Override
 	public void show() {
-		this.parseItems(this.getData());
+		// this.parseItems();
 		
 		this.getData().setCurrentScreen(this);
 	}
@@ -29,22 +28,6 @@ public class LoadScreen extends Screen {
 	protected void draw(float delta) {
 		
 	}
-
-	private void parseItems(Data gameData) {
-		gameData.beginReading("/data/item");
-		
-		int itemsToParse = gameData.getReader().getBytes().size() / SerializationConstants.ITEM_SIZE;
-		for(int i = 0; i < itemsToParse; i++) {
-			ItemInfo item = new ItemInfo();
-			item.parse(gameData.getReader(), i);
-			System.out.println(item.toString());
-			GameData.ITEM_TYPES.add(item);
-		}
-		
-		gameData.stopReading();
-		System.out.println("Loaded: " + GameData.ITEM_TYPES.size() + " items");
-	}
-
 	@Override
 	protected void create() {
 		// TODO Auto-generated method stub

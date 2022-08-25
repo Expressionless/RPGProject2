@@ -66,7 +66,7 @@ public class RpgGame extends BaseGame {
 	}
 
 	protected void addScreens() {
-		this.getData().addScreen(new LoadScreen(this));
+		// this.getData().addScreen(new LoadScreen(this));
 		this.getData().addScreen(new GameScreen(this));
 	}
 	
@@ -88,7 +88,7 @@ public class RpgGame extends BaseGame {
 	@Override
 	public void render() {
 		ScreenUtils.clear(ApplicationConstants.CLEAR_COLOR);
-		this.getScreen().render(Gdx.graphics.getDeltaTime());
+		this.getData().getCurrentScreen().render(Gdx.graphics.getDeltaTime());
 		//fps.log();
 	}
 

@@ -2,10 +2,11 @@ package main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.badlogic.gdx.InputAdapter;
 
-import io.sly.helix.game.Data;
 import io.sly.helix.utils.math.Vector2D;
 import main.game.RpgGame;
 import main.game.entities.Mob;
@@ -17,19 +18,20 @@ import main.game.ui.UI;
 
 public final class GameData {
 	
-	public static final ArrayList<ItemInfo> ITEM_TYPES = new ArrayList<>();
-	public static final HashMap<String, InputAdapter> INPUT_ADAPTERS = new HashMap<>();
-	public final ArrayList<Mob> mobs;
-	public final ArrayList<Item> items;
+	public static final List<ItemInfo> ITEM_TYPES = new ArrayList<>();
+	public static final Map<String, InputAdapter> INPUT_ADAPTERS = new HashMap<>();
+	public final List<Mob> mobs = new ArrayList<>();
+	public final List<Item> items = new ArrayList<>();
 	
 	// "Unique" Entities
 	private Player player;
 	private InventoryCursor cursor;
 	private UI ui;
+
+	private RpgGame game;
 	
 	public GameData(RpgGame game) {
-		mobs = new ArrayList<>();
-		items = new ArrayList<>();
+		this.game = game;
 	}
 
 	protected void dispose() {
@@ -60,7 +62,7 @@ public final class GameData {
 	}
 
 	public RpgGame getGame() {
-		return (RpgGame)this.getGame();
+		return this.game;
 	}
 	
 	public void setUI(UI ui) {
@@ -68,7 +70,7 @@ public final class GameData {
 	}
 
 	public Vector2D toGameCoords(int screenX, int screenY) {
-		return null;
+		return new Vector2D(screenX, screenY);
 	}
 
 }

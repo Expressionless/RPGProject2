@@ -1,7 +1,6 @@
 package main.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -24,13 +23,17 @@ public class RpgGame extends BaseGame {
 
 	private Viewport viewport;
 
+	private GameData gameData;
+
 	public RpgGame() {
-		super(ApplicationConstants.TITLE, ApplicationConstants.FRAME_WIDTH, ApplicationConstants.FRAME_HEIGHT);
+		super("main", ApplicationConstants.TITLE, ApplicationConstants.FRAME_WIDTH, ApplicationConstants.FRAME_HEIGHT);
 
 		config.setIdleFPS(ApplicationConstants.IDLE_FPS);
 		config.setForegroundFPS(ApplicationConstants.TARGET_FPS);
 		config.useVsync(true);
 		config.setResizable(false);
+
+		gameData = new GameData(this);
 		
 		System.out.println(ApplicationConstants.FRAME_WIDTH + "x" + ApplicationConstants.FRAME_HEIGHT);
 	}
@@ -89,15 +92,8 @@ public class RpgGame extends BaseGame {
 		//fps.log();
 	}
 
-	// Getters and Setters
-	
 	public GameData getGameData() {
-		return (GameData) this.getData();
+		return gameData;
 	}
-	
-	public RpgGame getRpgGame() {
-		return this;
-	}
-	
 
 }

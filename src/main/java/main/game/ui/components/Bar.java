@@ -65,7 +65,7 @@ public abstract class Bar extends UIComponent {
 	}
 	
 	private void renderBar(SpriteBatch batch, Color col) {
-		Vector3 camPos = this.data.getCurrentCamera().position;
+		Vector3 camPos = getData().getCurrentCamera().position;
 		
 		float x = this.getPos().getX() + camPos.x - ApplicationConstants.CAMERA_WIDTH / 2;
 		float y = this.getPos().getY() + camPos.y + ApplicationConstants.CAMERA_HEIGHT / 2 - center_disp.getHeight();

@@ -15,7 +15,7 @@ import main.game.item.Item;
 import main.game.item.ItemInfo;
 import main.game.ui.UI;
 
-public final class GameData extends Data {
+public final class GameData {
 	
 	public static final ArrayList<ItemInfo> ITEM_TYPES = new ArrayList<>();
 	public static final HashMap<String, InputAdapter> INPUT_ADAPTERS = new HashMap<>();
@@ -28,7 +28,6 @@ public final class GameData extends Data {
 	private UI ui;
 	
 	public GameData(RpgGame game) {
-		super(game);
 		mobs = new ArrayList<>();
 		items = new ArrayList<>();
 	}

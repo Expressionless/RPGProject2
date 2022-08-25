@@ -62,8 +62,8 @@ public final class GameScreen extends Screen {
 		this.getData().getCurrentCamera().update();
 
 		this.batch.begin();
-		this.batch.setProjectionMatrix(this.getGameData().getCurrentCamera().combined);
-		this.getGameData().render(batch);
+		this.batch.setProjectionMatrix(this.getData().getCurrentCamera().combined);
+		this.getData().render(batch);
 		this.batch.end();
 	}
 
@@ -73,6 +73,6 @@ public final class GameScreen extends Screen {
 	}
 
 	public GameData getGameData() {
-		return (GameData) getGame().getData();
+		return getRpgGame().getGameData();
 	}
 }

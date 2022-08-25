@@ -15,7 +15,7 @@ public class DynamicLoaderCode {
 		
 		System.out.println("Trying dynamic loader");
 		
-		Set<Class<?>> classes = ClassUtils.getClasses(CLASS_PATH);
+		Set<Class<?>> classes = ClassUtils.getClasses();
 		ArrayList<String> names = new ArrayList<>();
 		
 		

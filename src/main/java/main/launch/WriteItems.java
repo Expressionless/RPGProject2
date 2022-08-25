@@ -1,7 +1,7 @@
 package main.launch;
 
-import helix.utils.io.BinaryReader;
-import helix.utils.io.BinaryWriter;
+import io.sly.helix.utils.io.BinaryReader;
+import io.sly.helix.utils.io.BinaryWriter;
 import main.constants.InventoryConstants;
 import main.game.item.ItemInfo;
 

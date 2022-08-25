@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import io.sly.helix.annotations.QueueAsset;
 import io.sly.helix.utils.io.BinaryReader;
 import io.sly.helix.utils.io.BinaryWriter;
+import io.sly.helix.utils.io.Serializable;
 import io.sly.helix.utils.math.Angle;
 import io.sly.helix.utils.math.Vector2D;
 import main.constants.ApplicationConstants;
@@ -187,9 +188,10 @@ public class Player extends Mob {
 	public boolean write(BinaryWriter writer, int pos) {
 		return false;
 	}
-
+	
 	@Override
-	public boolean parse(BinaryReader reader, int pos) {
-		return false;
+	public Serializable parse(BinaryReader reader, int pos) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -57,8 +57,8 @@ public final class Chunk implements Serializable {
 	}
 
 	@Override
-	public boolean parse(BinaryReader reader, int pos) {
-		return true;
+	public Serializable parse(BinaryReader reader, int pos) {
+		return null;
 	}
 
 }

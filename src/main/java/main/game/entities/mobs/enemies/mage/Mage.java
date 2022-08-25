@@ -3,6 +3,7 @@ package main.game.entities.mobs.enemies.mage;
 import io.sly.helix.annotations.QueueAsset;
 import io.sly.helix.utils.io.BinaryReader;
 import io.sly.helix.utils.io.BinaryWriter;
+import io.sly.helix.utils.io.Serializable;
 import io.sly.helix.utils.math.Angle;
 import io.sly.helix.utils.math.Vector2D;
 import main.game.RpgGame;
@@ -62,8 +63,8 @@ public class Mage extends RangedEnemy<MageProjectile> {
 	}
 
 	@Override
-	public boolean parse(BinaryReader reader, int pos) {
+	public Serializable parse(BinaryReader reader, int pos) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 }

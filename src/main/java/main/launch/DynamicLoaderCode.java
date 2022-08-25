@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Set;
 
-import helix.utils.ClassUtils;
+import io.sly.helix.utils.ClassUtils;
 
 @SuppressWarnings("unused")
 public class DynamicLoaderCode {

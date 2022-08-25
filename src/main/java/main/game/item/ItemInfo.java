@@ -203,9 +203,9 @@ public final class ItemInfo implements Serializable {
 	}
 
 	@Override
-	public boolean parse(BinaryReader reader, int position) {
+	public Serializable parse(BinaryReader reader, int position) {
 		if(reader == null)
-			return false;
+			return null;
 		position *= SerializationConstants.ITEM_SIZE;
 
 		log.fine("Parsing new item at: " + position);
@@ -228,7 +228,7 @@ public final class ItemInfo implements Serializable {
 		log.fine("Flags: " + flags);
 		if(com.badlogic.gdx.Gdx.files != null)
 			this.attachSprite();
-		return true;
+		return null;
 	}
 
 }

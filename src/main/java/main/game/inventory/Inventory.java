@@ -64,7 +64,7 @@ public abstract class Inventory extends GameObject implements Serializable {
 	
 	public void step(float delta) {
 		// Track the screen
-		Vector3 camera = this.getGameData().getCamera().position;
+		Vector3 camera = this.getData().getCurrentCamera().position;
 		this.getBounds().setX(screenPos.getX() + camera.x);
 		this.getBounds().setY(screenPos.getY() + camera.y);
 		
@@ -285,19 +285,5 @@ public abstract class Inventory extends GameObject implements Serializable {
 	
 	public Vector2D getScreenPos() {
 		return screenPos;
-	}
-
-	// Serialization
-	/**/
-	@Override
-	public boolean write(BinaryWriter writer, int pos) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean parse(BinaryReader reader, int pos) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

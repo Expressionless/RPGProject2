@@ -1,6 +1,6 @@
 package main.constants;
 
-import helix.utils.math.Vector2D;
+import io.sly.helix.utils.math.Vector2D;
 
 public class UIConstants {
 

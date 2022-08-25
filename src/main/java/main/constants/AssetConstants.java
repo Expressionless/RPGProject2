@@ -1,6 +1,6 @@
 package main.constants;
 
-import helix.annotations.QueueAsset;
+import io.sly.helix.annotations.QueueAsset;
 
 public class AssetConstants {
 	// Items resource path

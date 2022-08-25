@@ -127,7 +127,7 @@ public class GameInput extends InputAdapter {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		Vector2D p = getData().toGameCoords(screenX, screenY);
+		Vector2D p = getGameData().toGameCoords(screenX, screenY);
 		getGameData().getCursor().getPos().setX(p.getX());// + screenX / Constants.RATIO_X);
 		getGameData().getCursor().getPos().setY(p.getY());// - screenY / Constants.RATIO_Y);
 		return true;

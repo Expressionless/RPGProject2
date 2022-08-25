@@ -17,7 +17,7 @@ public class LoadScreen extends Screen {
 	public void show() {
 		this.parseItems(this.getData());
 		
-		this.getRpgGame().setScreen(1);
+		this.getData().setCurrentScreen(this);
 	}
 
 	@Override
@@ -43,16 +43,6 @@ public class LoadScreen extends Screen {
 		
 		gameData.stopReading();
 		System.out.println("Loaded: " + GameData.ITEM_TYPES.size() + " items");
-	}
-	
-	// Getters and Setters
-	
-	private RpgGame getRpgGame() {
-		return (RpgGame)this.getGame();
-	}
-	
-	private GameData getGameData() {
-		return this.getRpgGame().getGameData();
 	}
 
 	@Override

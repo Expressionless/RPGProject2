@@ -2,7 +2,6 @@ package main.game.item;
 
 import java.util.Random;
 
-import io.sly.helix.game.Data;
 import io.sly.helix.gfx.Sprite;
 import io.sly.helix.gfx.SpriteSheet;
 import io.sly.helix.utils.math.Vector2D;
@@ -64,7 +63,7 @@ public class Item extends Doodad {
 	@Override
 	public void step(float delta) {
 		float XScale = (float) (Math
-				.sin((double) (Data.getTicks() + animOffset) / (double) (this.animPeriodOffset)) * 0.2 + 1);
+				.sin((double) (getGame().getTicks() + animOffset) / (double) (this.animPeriodOffset)) * 0.2 + 1);
 		float YScale = XScale;
 		// OSCILLATE BETWEEN 0.8 - 1.2
 		if (this.getSprite() != null) {

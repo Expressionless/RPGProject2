@@ -1,6 +1,6 @@
 package main.launch;
 
-import helix.utils.io.BinaryReader;
+import io.sly.helix.utils.io.BinaryReader;
 import main.constants.SerializationConstants;
 
 public class ReadItemsTest {

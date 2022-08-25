@@ -4,21 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.math.Vector3;
 
 import io.sly.helix.game.Data;
-import main.constants.ApplicationConstants;
-import main.constants.AssetConstants;
-import main.constants.UIConstants;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.RpgGame;
 import main.game.entities.Mob;
 import main.game.entities.mobs.neutral.Player;
-import main.game.inventory.Slot;
 import main.game.inventory.util.InventoryCursor;
 import main.game.item.Item;
 import main.game.item.ItemInfo;
 import main.game.ui.UI;
-import main.game.ui.components.Bar;
 
 public final class GameData extends Data {
 	
@@ -38,7 +33,6 @@ public final class GameData extends Data {
 		items = new ArrayList<>();
 	}
 
-	@Override
 	protected void dispose() {
 		items.removeIf((Item item) -> {
 			return item.willDispose();
@@ -72,6 +66,10 @@ public final class GameData extends Data {
 	
 	public void setUI(UI ui) {
 		this.ui = ui;
+	}
+
+	public Vector2D toGameCoords(int screenX, int screenY) {
+		return null;
 	}
 
 }

@@ -102,8 +102,8 @@ public final class World implements Serializable {
 	private void updateCamera() {
 		// Update Camera
 		if (player != null) {
-			game.getGameData().getCamera().position.x = player.getPos().getX();
-			game.getGameData().getCamera().position.y = player.getPos().getY();
+			game.getData().getCurrentCamera().position.x = player.getPos().getX();
+			game.getData().getCurrentCamera().position.y = player.getPos().getY();
 		}
 	}
 
@@ -141,7 +141,7 @@ public final class World implements Serializable {
 	}
 
 	@Override
-	public boolean parse(BinaryReader reader, int pos) {
-		return false;
+	public Serializable parse(BinaryReader reader, int pos) {
+		return null;
 	}
 }

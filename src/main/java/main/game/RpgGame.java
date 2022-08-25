@@ -2,6 +2,7 @@ package main.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -11,7 +12,9 @@ import io.sly.helix.gfx.SpriteSheet;
 import main.GameData;
 import main.constants.ApplicationConstants;
 import main.constants.AssetConstants;
+import main.constants.UIConstants;
 import main.game.inventory.Slot;
+import main.game.inventory.util.InventoryCursor;
 import main.game.item.Item;
 import main.game.screens.GameScreen;
 import main.game.screens.LoadScreen;
@@ -35,15 +38,15 @@ public class RpgGame extends BaseGame {
 	@Override
 	public void init() {
 		// Init Bar Sprite
-		Bar.BAR_SPRITE = new SpriteSheet(this, Bar.BAR_DISP_SPRITE_REF, 8, 12);
-		Bar.bar = this.createSprite(Bar.BAR_SPRITE_REF);
+		Bar.BAR_SPRITE = new SpriteSheet(this.getData(), Bar.BAR_DISP_SPRITE_REF, 8, 12);
+		Bar.bar = this.getData().createSprite(Bar.BAR_SPRITE_REF);
 		
 		// Init inventory data
-		Slot.SPRITE = this.createSprite(Slot.SPRITE_REF);
+		Slot.SPRITE = this.getData().createSprite(Slot.SPRITE_REF);
 		Slot.inventoryFont.getData().setScale(0.25f);
 		
 		// Init Item Data
-		Item.ITEM_SHEET = new SpriteSheet(this, AssetConstants.ITEMS_DIRECTORY, 8, 8);
+		Item.ITEM_SHEET = new SpriteSheet(this.getData(), AssetConstants.ITEMS_DIRECTORY, 8, 8);
 		
 		
 		Bar.left_disp = Bar.BAR_SPRITE.getSubSprite(0, 0);
@@ -55,10 +58,10 @@ public class RpgGame extends BaseGame {
 		Bar.right_disp.setScale(UIConstants.BAR_SCALE);
 		
 		
-		cursor = new InventoryCursor(this.getGame());
+		getGameData().setCursor(new InventoryCursor(this));
+		addScreens();
 	}
 
-	@Override
 	protected void addScreens() {
 		this.getData().addScreen(new LoadScreen(this));
 		this.getData().addScreen(new GameScreen(this));
@@ -67,8 +70,8 @@ public class RpgGame extends BaseGame {
 	@Override
 	protected void start() {
 
-		this.getCamera().setToOrtho(false, frameWidth, frameHeight);
-		viewport = new ExtendViewport(ApplicationConstants.CAMERA_WIDTH, ApplicationConstants.CAMERA_HEIGHT, this.getCamera());
+		((OrthographicCamera)this.getCurrentCamera()).setToOrtho(false, frameWidth, frameHeight);
+		viewport = new ExtendViewport(ApplicationConstants.CAMERA_WIDTH, ApplicationConstants.CAMERA_HEIGHT, this.getCurrentCamera());
 		viewport.apply();
 
 		this.getData().setViewport(viewport);

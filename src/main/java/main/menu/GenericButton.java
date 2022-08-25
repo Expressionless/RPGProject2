@@ -1,19 +1,17 @@
 package main.menu;
 
-import helix.utils.math.Point;
+import io.sly.helix.utils.math.Vector2D;
 import main.game.Entity;
 import main.game.RpgGame;
 
 public class GenericButton extends Entity {
 
-	public GenericButton(RpgGame game, Point pos) {
+	public GenericButton(RpgGame game, Vector2D pos) {
 		super(game, pos);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void step(float delta) {
-		// TODO Auto-generated method stub
 		
 	}
 

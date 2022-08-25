@@ -64,7 +64,7 @@ public class Slot implements Serializable {
 			this.amount = 0;
 		
 		// Track the screen
-		Vector3 camera = inventory.getData().getCamera().position;
+		Vector3 camera = inventory.getData().getCurrentCamera().position;
 		this.getBounds().setX(screenPos.getX() + camera.x);
 		this.getBounds().setY(screenPos.getY() + camera.y);
 	}
@@ -83,7 +83,7 @@ public class Slot implements Serializable {
 				inventoryFont.draw(b, string, x + SPRITE.getWidth() - 3, y + 3);
 			}
 			
-			InventoryCursor inv = inventory.getData().getCursor();
+			InventoryCursor inv = inventory.getGameData().getCursor();
 			if(inv != null && this.isCursorOver()) {
 				inventoryFont.draw(b, item.name + "\n" + this.getItem().type, inv.getPos().getX(), inv.getPos().getY());
 			}
@@ -206,10 +206,10 @@ public class Slot implements Serializable {
 	}
 
 	@Override
-	public boolean parse(BinaryReader reader, int pos) {
+	public Serializable parse(BinaryReader reader, int pos) {
 		this.slotID = reader.getInt(pos);
 		this.setItem(ItemInfo.get(reader.getInt(pos + 1)), reader.getInt(pos + 2));
 		// TODO: Keep track of inventories
-		return true;
+		return null;
 	}
 }

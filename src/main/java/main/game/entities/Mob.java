@@ -35,14 +35,6 @@ public abstract class Mob extends Entity implements Serializable {
 	}
 	
 	@Override
-	protected void draw(SpriteBatch batch) {
-		super.draw(batch);
-		if(stats.getStat("health") < stats.getStat("maxHealth")) {
-			
-		}
-	}
-	
-	@Override
 	protected void preStep(float delta) {
 		super.preStep(delta);
 

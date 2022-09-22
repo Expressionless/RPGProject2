@@ -68,7 +68,9 @@ public final class GameScreen extends Screen {
 		this.getData().getCurrentCamera().update();
 
 		this.batch.begin();
+		world.getPlayer().draw(batch);
 		this.batch.setProjectionMatrix(this.getData().getCurrentCamera().combined);
+		world.render(batch, delta);
 		this.getData().render(batch);
 		this.batch.end();
 	}

@@ -4,6 +4,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import io.sly.helix.utils.io.BinaryReader;
 import io.sly.helix.utils.io.BinaryWriter;
 import io.sly.helix.utils.io.Serializable;
@@ -39,6 +41,11 @@ public final class World implements Serializable {
 
 	public void step(float delta) {
 		this.updateCamera();
+	}
+
+	public void render(SpriteBatch sb, float delta) {
+		// only render the current chunk
+		player.draw(sb);
 	}
 
 	/**

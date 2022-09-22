@@ -101,7 +101,7 @@ public class Player extends Mob {
 
 	@Override
 	public void draw(SpriteBatch batch) {
-
+		super.draw(batch);
 		this.getInventory().render(batch);
 		this.hotbar.render(batch);
 		this.armour.render(batch);

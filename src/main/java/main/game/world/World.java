@@ -41,11 +41,19 @@ public final class World implements Serializable {
 
 	public void step(float delta) {
 		this.updateCamera();
+		player.update(delta);
+		for(Chunk[] chunkRow : chunks) {
+			for(Chunk chunk : chunkRow) {
+				// update and check updateable
+				// update each entity in the chunk
+				// update visible
+			}
+		}
 	}
 
 	public void render(SpriteBatch sb, float delta) {
 		// only render the current chunk
-		player.draw(sb);
+		player.render(sb);
 	}
 
 	/**
@@ -60,11 +68,9 @@ public final class World implements Serializable {
 	public Player spawnPlayer(Vector2D pos) {
 		if(this.player != null)
 			log.warning("PLAYER IS ALREADY CREATED IN WORLD: " + this.toString());
-		this.player =  (Player)this.spawnMob(Player.class, pos);
+		this.player =  this.spawnMob(Player.class, pos);
 		return this.player;
 	}
-	
-	
 	
 	public <T extends Entity> T spawnEntity(Class<T> entityType, Vector2D pos) {
 		Constructor<T> constructor;

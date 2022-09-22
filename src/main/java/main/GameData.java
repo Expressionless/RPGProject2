@@ -69,6 +69,10 @@ public final class GameData {
 		this.ui = ui;
 	}
 
+	public UI getUI() {
+		return ui;
+	}
+
 	public Vector2D toGameCoords(int screenX, int screenY) {
 		return new Vector2D(screenX, screenY);
 	}

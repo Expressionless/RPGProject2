@@ -1,7 +1,5 @@
 package main.game.entities;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import io.sly.helix.game.entities.GameObject;
 import io.sly.helix.utils.io.Serializable;
 import io.sly.helix.utils.math.Vector2D;
@@ -38,7 +36,7 @@ public abstract class Mob extends Entity implements Serializable {
 	protected void preStep(float delta) {
 		super.preStep(delta);
 
-		if(this.getDirection().length() == 0) {
+		if(this.getDirection().lengthSq() == 0) {
 			this.getSprite().restart();
 			this.getSprite().stop();
 		} else {
@@ -50,7 +48,7 @@ public abstract class Mob extends Entity implements Serializable {
 	}
 	
 	@Override
-	public void step(float delta) {
+	protected void step(float delta) {
 		if(this.isAI())
 			this.ai.update();
 	}

@@ -93,7 +93,7 @@ public class Player extends Mob {
 	}
 
 	@Override
-	public void step(float delta) {
+	protected void step(float delta) {
 		// Update collider
 		// Manage input
 		this.handleMovement(delta);
@@ -101,7 +101,6 @@ public class Player extends Mob {
 
 	@Override
 	public void draw(SpriteBatch batch) {
-		super.draw(batch);
 		this.getInventory().render(batch);
 		this.hotbar.render(batch);
 		this.armour.render(batch);
@@ -121,6 +120,7 @@ public class Player extends Mob {
 			this.move(this.getStat("speed") * delta);
 	}
 
+	@Override
 	protected void updateSprite() {
 		double angle = this.getDirection().getAngle();
 
@@ -130,20 +130,26 @@ public class Player extends Mob {
 				|| (angle < 0 && angle >= Angle.BOTTOM_RIGHT.angle);
 		boolean down = angle < Angle.BOTTOM_RIGHT.angle && angle > Angle.BOTTOM_LEFT.angle;
 
+		// TODO: MOVE TO FACING
 		if (up) {
 			setSprite(PLAYER_UP);
 			getSprite().flip(false);
+			getSprite().start();
 		} else if (right) {
 			setSprite(PLAYER_RIGHT);
 			getSprite().flip(false);
+			getSprite().start();
 		} else if (down) {
 			setSprite(PLAYER_DOWN);
 			getSprite().flip(false);
+			getSprite().start();
 		} else if (left) {
 			setSprite(PLAYER_RIGHT);
 			getSprite().flip(true);
-		}
-		this.getSprite().start();
+			getSprite().start();
+		} else
+			getSprite().reset();
+			//this.getSprite().start();
 	}
 
 	private void updateCollider() {

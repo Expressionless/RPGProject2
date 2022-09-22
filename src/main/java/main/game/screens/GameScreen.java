@@ -1,5 +1,7 @@
 package main.game.screens;
 
+import org.jboss.logging.Logger;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -7,16 +9,17 @@ import io.sly.helix.game.BaseGame;
 import io.sly.helix.gfx.Screen;
 import io.sly.helix.utils.math.Vector2D;
 import main.GameData;
-import main.constants.SerializationConstants;
+
 import main.game.RpgGame;
 import main.game.entities.doodads.Tree;
 import main.game.entities.mobs.enemies.mage.Mage;
 import main.game.input.GameInput;
-import main.game.item.ItemInfo;
+
 import main.game.ui.UI;
 import main.game.world.World;
 
 public final class GameScreen extends Screen {
+	private static final Logger log = Logger.getLogger(GameScreen.class);
 
 	private World world;
 	private UI ui;
@@ -24,27 +27,8 @@ public final class GameScreen extends Screen {
 	private SpriteBatch batch;
 
 	public GameScreen(BaseGame game) {
-		super(game);
-		parseItems();
+		super(game, 1);
 	}
-
-	private void parseItems() {
-		this.getData().beginReading("/data/item");
-		
-		int itemsToParse = this.getData().getReader().getBytes().size() / SerializationConstants.ITEM_SIZE;
-		for(int i = 0; i < itemsToParse; i++) {
-			ItemInfo item = new ItemInfo();
-			item.parse(this.getData().getReader(), i);
-			System.out.println(item.toString());
-			GameData.ITEM_TYPES.add(item);
-		}
-		
-		this.getData().stopReading();
-
-		System.out.println("Loaded: " + GameData.ITEM_TYPES.size() + " items");
-		// this.getData().setCurrentScreen(1);
-	}
-
 
 	@Override
 	protected void create() {
@@ -52,6 +36,7 @@ public final class GameScreen extends Screen {
 		this.world = new World(this.getRpgGame(), 32, 32);
 		this.ui = new UI(this.getRpgGame());
 		this.getGameData().setUI(this.ui);
+		log.info("Starting world");
 		this.startWorld();
 	}
 	

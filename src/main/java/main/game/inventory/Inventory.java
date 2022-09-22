@@ -8,8 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
 import io.sly.helix.game.entities.GameObject;
-import io.sly.helix.utils.io.BinaryReader;
-import io.sly.helix.utils.io.BinaryWriter;
+
 import io.sly.helix.utils.io.Serializable;
 import io.sly.helix.utils.math.Rectangle;
 import io.sly.helix.utils.math.Vector2D;

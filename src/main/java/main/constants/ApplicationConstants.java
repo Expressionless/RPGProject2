@@ -1,5 +1,7 @@
 package main.constants;
 
+import java.io.File;
+
 import com.badlogic.gdx.graphics.Color;
 
 public class ApplicationConstants {
@@ -27,5 +29,8 @@ public class ApplicationConstants {
 
 	// Background clear Color
 	public static Color CLEAR_COLOR = new Color(0, 0.25f, 0, 1);
+
+	// Load Screen Path
+	public static String LOADSCREEN_PATH = new File("").getAbsolutePath() + "/res/sprites/loadscreens/loading.png";
 
 }

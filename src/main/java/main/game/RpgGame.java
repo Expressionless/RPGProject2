@@ -6,15 +6,17 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import io.sly.helix.exception.HelixException;
 import io.sly.helix.game.BaseGame;
+import io.sly.helix.gfx.Screen;
 import io.sly.helix.gfx.SpriteSheet;
 import main.GameData;
 import main.constants.ApplicationConstants;
-import main.constants.AssetConstants;
+
 import main.constants.UIConstants;
 import main.game.inventory.Slot;
 import main.game.inventory.util.InventoryCursor;
-import main.game.item.Item;
+
 import main.game.screens.GameScreen;
 import main.game.screens.LoadScreen;
 import main.game.ui.components.Bar;
@@ -34,12 +36,14 @@ public class RpgGame extends BaseGame {
 		config.setResizable(false);
 
 		gameData = new GameData(this);
-		
-		System.out.println(ApplicationConstants.FRAME_WIDTH + "x" + ApplicationConstants.FRAME_HEIGHT);
 	}
 
 	@Override
 	public void init() {
+		addScreens();
+	}
+
+	public void postLoad() {
 		// Init Bar Sprite
 		Bar.BAR_SPRITE = new SpriteSheet(this.getData(), Bar.BAR_DISP_SPRITE_REF, 8, 12);
 		Bar.bar = this.getData().createSprite(Bar.BAR_SPRITE_REF);
@@ -47,9 +51,6 @@ public class RpgGame extends BaseGame {
 		// Init inventory data
 		Slot.SPRITE = this.getData().createSprite(Slot.SPRITE_REF);
 		Slot.inventoryFont.getData().setScale(0.25f);
-		
-		// Init Item Data
-		Item.ITEM_SHEET = new SpriteSheet(this.getData(), AssetConstants.ITEMS_DIRECTORY, 8, 8);
 		
 		
 		Bar.left_disp = Bar.BAR_SPRITE.getSubSprite(0, 0);
@@ -62,11 +63,21 @@ public class RpgGame extends BaseGame {
 		
 		
 		getGameData().setCursor(new InventoryCursor(this));
-		addScreens();
+	}
+
+	@Override
+	protected void preLoad() {
+		
+		// Init Item Data
+		// Item.ITEM_SHEET = new SpriteSheet(this.getData(), AssetConstants.ITEMS_DIRECTORY, 8, 8);
+		Screen loadScreen = new LoadScreen(this);
+		this.getData().addScreen(loadScreen);
+		this.setScreen(loadScreen);
+		this.getData().getManager().finishLoading();
+		super.preLoad();
 	}
 
 	protected void addScreens() {
-		// this.getData().addScreen(new LoadScreen(this));
 		this.getData().addScreen(new GameScreen(this));
 	}
 	

@@ -24,7 +24,6 @@ public class GameInput extends InputAdapter {
 	
 	public GameInput(GameData data) {
 		this.gameData = data;
-		System.out.println(data);
 		this.player = this.gameData.getPlayer();
 	}
 	

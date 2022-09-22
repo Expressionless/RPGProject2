@@ -6,7 +6,7 @@ import io.sly.helix.gfx.Screen;
 public class MenuScreen extends Screen {
 
 	public MenuScreen(BaseGame game) {
-		super(game);
+		super(game, 2);
 	}
 	
 	@Override

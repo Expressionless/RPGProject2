@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 import io.sly.helix.utils.math.Vector2D;
+import main.constants.Constants;
 import main.game.RpgGame;
 import main.game.entities.Mob;
 import main.game.entities.mobs.neutral.Player;
@@ -22,6 +24,7 @@ public final class GameData {
 	public static final Map<String, InputAdapter> INPUT_ADAPTERS = new HashMap<>();
 	public final List<Mob> mobs = new ArrayList<>();
 	public final List<Item> items = new ArrayList<>();
+	private static final Map<String, BitmapFont> FONTS = new HashMap<>();
 	
 	// "Unique" Entities
 	private Player player;
@@ -32,6 +35,7 @@ public final class GameData {
 	
 	public GameData(RpgGame game) {
 		this.game = game;
+		this.addFont(Constants.FONT_DEFAULT, new BitmapFont());
 	}
 
 	protected void dispose() {
@@ -77,4 +81,11 @@ public final class GameData {
 		return new Vector2D(screenX, screenY);
 	}
 
+	public void addFont(String name, BitmapFont f) {
+		FONTS.put(name, f);
+	}
+
+	public BitmapFont getFont(String name) {
+		return FONTS.get(name);
+	}
 }

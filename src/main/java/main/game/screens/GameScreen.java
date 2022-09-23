@@ -27,7 +27,7 @@ public final class GameScreen extends Screen {
 	private SpriteBatch batch;
 
 	public GameScreen(BaseGame game) {
-		super(game, 1);
+		super(game, 2);
 	}
 
 	@Override

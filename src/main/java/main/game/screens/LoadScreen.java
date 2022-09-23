@@ -5,7 +5,6 @@ import org.jboss.logging.Logger;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import io.sly.helix.exception.HelixException;
 import io.sly.helix.gfx.Screen;
 import io.sly.helix.gfx.Sprite;
 import io.sly.helix.gfx.SpriteSheet;
@@ -63,12 +62,6 @@ public class LoadScreen extends Screen {
 		boolean finishedLoading = this.getData().loadNextAsset();
 		
 		if(finishedLoading) {
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 			((RpgGame)this.getGame()).postLoad();
 			this.getData().goToNextScreen();
 		}

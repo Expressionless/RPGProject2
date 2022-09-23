@@ -2,14 +2,18 @@ package main.game.world;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import io.sly.helix.utils.io.BinaryReader;
 import io.sly.helix.utils.io.BinaryWriter;
 import io.sly.helix.utils.io.Serializable;
 import io.sly.helix.utils.math.Vector2D;
+import main.constants.Constants;
 import main.constants.WorldConstants;
 import main.game.Entity;
 import main.game.RpgGame;
@@ -25,6 +29,8 @@ public final class World implements Serializable {
 	 */
 	public final ItemSpawner itemSpawner;
 	
+	List<Entity> entities = new ArrayList<>();
+
 	// Unique Entities
 	private Player player;
 
@@ -41,7 +47,10 @@ public final class World implements Serializable {
 
 	public void step(float delta) {
 		this.updateCamera();
-		player.update(delta);
+		// player.update(delta);
+		for(Entity entity : entities) {
+			entity.update(delta);
+		}
 		for(Chunk[] chunkRow : chunks) {
 			for(Chunk chunk : chunkRow) {
 				// update and check updateable
@@ -53,7 +62,16 @@ public final class World implements Serializable {
 
 	public void render(SpriteBatch sb, float delta) {
 		// only render the current chunk
-		player.render(sb);
+		// player.render(sb);
+		BitmapFont font = getGame().getGameData().getFont(Constants.FONT_DEFAULT);
+		for(Chunk[] chunkRow : chunks) {
+			for(Chunk chunk : chunkRow) {
+				font.draw(sb, "Hello", chunk.getBounds().getX(), chunk.getBounds().getY());
+			}
+		}
+		for(Entity entity : entities) {
+			entity.render(sb);
+		}
 	}
 
 	/**
@@ -89,27 +107,30 @@ public final class World implements Serializable {
 			e.printStackTrace();
 			return null;
 		}
+		entities.add(newEntity);
 		return newEntity;
 	}
 
 	public <T extends Mob> T spawnMob(Class<T> mobType, Vector2D pos) {
-		Constructor<T> constructor;
+		return spawnEntity(mobType, pos);
+		// Constructor<T> constructor;
 
-		try {
-			constructor = mobType.getConstructor(RpgGame.class, Vector2D.class);
-		} catch (NoSuchMethodException | SecurityException e) {
-			e.printStackTrace();
-			return null;
-		}
-		T newMob;
-		try {
-			newMob = constructor.newInstance(this.game, pos);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return newMob;
+		// try {
+		// 	constructor = mobType.getConstructor(RpgGame.class, Vector2D.class);
+		// } catch (NoSuchMethodException | SecurityException e) {
+		// 	e.printStackTrace();
+		// 	return null;
+		// }
+		// T newMob;
+		// try {
+		// 	newMob = constructor.newInstance(this.game, pos);
+		// } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+		// 		| InvocationTargetException e) {
+		// 	e.printStackTrace();
+		// 	return null;
+		// }
+		// entities.add(newMob);
+		// return newMob;
 	}
 
 	private void updateCamera() {
@@ -134,6 +155,10 @@ public final class World implements Serializable {
 	// Getters and Setters
 	public Player getPlayer() {
 		return this.player;
+	}
+
+	public void setPlayer(Player p) {
+		this.player = p;
 	}
 
 	public Chunk getChunk(int x, int y) {

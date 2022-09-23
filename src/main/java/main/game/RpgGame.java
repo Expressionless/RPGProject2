@@ -6,7 +6,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import io.sly.helix.exception.HelixException;
 import io.sly.helix.game.BaseGame;
 import io.sly.helix.gfx.Screen;
 import io.sly.helix.gfx.SpriteSheet;
@@ -19,6 +18,7 @@ import main.game.inventory.util.InventoryCursor;
 
 import main.game.screens.GameScreen;
 import main.game.screens.LoadScreen;
+import main.game.screens.MenuScreen;
 import main.game.ui.components.Bar;
 
 public class RpgGame extends BaseGame {
@@ -78,6 +78,7 @@ public class RpgGame extends BaseGame {
 	}
 
 	protected void addScreens() {
+		// this.getData().addScreen(new MenuScreen(this));
 		this.getData().addScreen(new GameScreen(this));
 	}
 	

@@ -21,11 +21,13 @@ public class Tree extends Doodad {
 		this.growtimer = Constants.TREE_GROWTH_CYCLE;
 		this.getSprite().setScale(1, 0.5f);
 		this.getAlarm(0).setAlarm((int)growtimer, () -> {});
+		System.out.println("New Tree");
 	}
 
 	@Override
-	public void step(float delta) {
-		this.getSprite().setScale(1, 1.0f - (float)(this.getAlarm(0).getTimer()) / growtimer * 0.5f);
+	protected void step(float delta) {
+		float growth = 1.0f - (float)(this.getAlarm(0).getTimer()) / growtimer * 0.5f;
+		this.getSprite().setScale(1, growth);
 	}
 
 }

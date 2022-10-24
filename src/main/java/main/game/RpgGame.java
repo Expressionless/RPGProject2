@@ -18,7 +18,6 @@ import main.game.inventory.util.InventoryCursor;
 
 import main.game.screens.GameScreen;
 import main.game.screens.LoadScreen;
-import main.game.screens.MenuScreen;
 import main.game.ui.components.Bar;
 
 public class RpgGame extends BaseGame {

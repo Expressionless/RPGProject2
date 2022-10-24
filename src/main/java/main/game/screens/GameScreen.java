@@ -47,6 +47,7 @@ public final class GameScreen extends Screen {
 		world.spawnEntity(Tree.class, new Vector2D(100, 80));
 
 		world.spawnMob(Mage.class, new Vector2D(140, 40));
+		world.itemSpawner.spawnItem(new Vector2D(200, 200), "sword");
 
 		initInputs();
 	}

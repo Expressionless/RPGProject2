@@ -35,7 +35,6 @@ public final class GameData {
 	
 	public GameData(RpgGame game) {
 		this.game = game;
-		this.addFont(Constants.FONT_DEFAULT, new BitmapFont());
 	}
 
 	protected void dispose() {

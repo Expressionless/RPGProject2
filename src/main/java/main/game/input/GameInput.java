@@ -162,7 +162,7 @@ public class GameInput extends InputAdapter {
 		System.out.println("Mouse: " + cursor.getPos());
 		if (onGround || !player.getInventory().isVisible()) {
 			if (cursor.getItem() != null) {
-				ItemSpawner is = new ItemSpawner(getRpgGame());
+				ItemSpawner is = new ItemSpawner(getRpgGame(), null);
 				is.spawnItem(cursor.getPos().copy(), cursor.getItem().ID, cursor.getAmount());
 
 				cursor.setItem(null);

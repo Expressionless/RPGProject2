@@ -8,10 +8,15 @@ import java.util.logging.Logger;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Vector2;
 
+import io.sly.helix.game.entities.GameObject;
 import io.sly.helix.utils.io.BinaryReader;
 import io.sly.helix.utils.io.BinaryWriter;
 import io.sly.helix.utils.io.Serializable;
+import io.sly.helix.utils.math.Rectangle;
 import io.sly.helix.utils.math.Vector2D;
 import main.constants.Constants;
 import main.constants.WorldConstants;
@@ -28,21 +33,53 @@ public final class World implements Serializable {
 	 * Item Spawner to help with spawning items
 	 */
 	public final ItemSpawner itemSpawner;
+
+	public final int width, height;
 	
-	List<Entity> entities = new ArrayList<>();
+	public List<Entity> entities = new ArrayList<>();
 
 	// Unique Entities
 	private Player player;
+
+	private ShapeRenderer shapeRenderer;
 
 	private Chunk[][] chunks;
 	private RpgGame game;
 
 	public World(RpgGame game, int width, int height) {
 		this.game = game;
-		this.itemSpawner = new ItemSpawner(game);
+		this.itemSpawner = new ItemSpawner(game, this);
 		chunks = new Chunk[height][width];
+		this.width = width;
+		this.height = height;
 
 		initChunks();
+		shapeRenderer = new ShapeRenderer();
+		// System.out.println(this.getGame().getData().getViewport().getCamera().combined);
+		shapeRenderer.setProjectionMatrix(this.getGame().getData().getCurrentCamera().combined);
+	}
+
+	/**
+	 * Get the {@link Chunk} a {@link GameObject} is in
+	 * @param o
+	 * @return
+	 */
+	public Chunk getObjectChunk(GameObject o) {
+		int x = (int)Math.floor(o.getPos().getX() / WorldConstants.CHUNK_WIDTH_PX);
+		int y = (int)Math.floor(o.getPos().getY() / WorldConstants.CHUNK_HEIGHT_PX);
+		if(x < 0 || x > width) {
+			return chunks[0][0];
+		}
+
+		if(y < 0 || y > height) {
+			return chunks[0][0];
+		}
+
+		return chunks[y][x];
+	}
+
+	public Chunk getPlayerChunk() {
+		return getObjectChunk(player);
 	}
 
 	public void step(float delta) {
@@ -51,27 +88,50 @@ public final class World implements Serializable {
 		for(Entity entity : entities) {
 			entity.update(delta);
 		}
-		for(Chunk[] chunkRow : chunks) {
-			for(Chunk chunk : chunkRow) {
-				// update and check updateable
-				// update each entity in the chunk
-				// update visible
-			}
-		}
+		
 	}
 
 	public void render(SpriteBatch sb, float delta) {
 		// only render the current chunk
 		// player.render(sb);
-		BitmapFont font = getGame().getGameData().getFont(Constants.FONT_DEFAULT);
-		for(Chunk[] chunkRow : chunks) {
-			for(Chunk chunk : chunkRow) {
-				font.draw(sb, "Hello", chunk.getBounds().getX(), chunk.getBounds().getY());
-			}
-		}
+		// BitmapFont font = getGame().getGameData().getFont(Constants.FONT_DEFAULT);
+		
 		for(Entity entity : entities) {
 			entity.render(sb);
 		}
+		// sb.end();
+		// shapeRenderer.begin(ShapeType.Line); //I'm using the Filled ShapeType, but remember you have three of them 
+		// for(Chunk[] chunkRow : chunks) {
+		// 	for(Chunk chunk : chunkRow) {
+		// 		// if(chunk.equals(getPlayerChunk()))
+		// 		// 	font.draw(sb, "Hello", chunk.getBounds().getX(), chunk.getBounds().getY());
+		// 		renderRect(new Rectangle(0, 0, 128, 128));
+		// 		// font.draw(sb, "0,0", 0, 0);
+		// 	}
+		// // }
+		// shapeRenderer.end(); 
+		// sb.begin();
+		// player.render(sb);
+
+		// Chunk chunk = getPlayerChunk();
+		// font.draw(sb, "Hello", chunk.getBounds().getX(), chunk.getBounds().getY());
+		// renderRect(chunk.getBounds());
+		// renderRect(new Rectangle(32, 32, 32, 32));
+		// System.out.println(this.getPlayer().getPos());
+		// Gdx.gl.glClearColor(0, 0, 0.2f, 1); 
+		// Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); 
+	 
+		
+	}
+	
+	private void renderRect(Rectangle rectangle) {
+		
+		float x = rectangle.getX();
+		float y = rectangle.getY();
+
+		float width = rectangle.getWidth();
+		float height = rectangle.getHeight();
+		shapeRenderer.rect(x, y, width, height); //assuming you have created those x, y, width and height variables 
 	}
 
 	/**
@@ -113,24 +173,6 @@ public final class World implements Serializable {
 
 	public <T extends Mob> T spawnMob(Class<T> mobType, Vector2D pos) {
 		return spawnEntity(mobType, pos);
-		// Constructor<T> constructor;
-
-		// try {
-		// 	constructor = mobType.getConstructor(RpgGame.class, Vector2D.class);
-		// } catch (NoSuchMethodException | SecurityException e) {
-		// 	e.printStackTrace();
-		// 	return null;
-		// }
-		// T newMob;
-		// try {
-		// 	newMob = constructor.newInstance(this.game, pos);
-		// } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-		// 		| InvocationTargetException e) {
-		// 	e.printStackTrace();
-		// 	return null;
-		// }
-		// entities.add(newMob);
-		// return newMob;
 	}
 
 	private void updateCamera() {
@@ -143,11 +185,11 @@ public final class World implements Serializable {
 
 	private void initChunks() {
 		int x, y;
-		int xPos = WorldConstants.CHUNK_WIDTH, yPos = WorldConstants.CHUNK_HEIGHT;
+		float xPos = WorldConstants.CHUNK_WIDTH_PX, yPos = WorldConstants.CHUNK_HEIGHT_PX;
 
 		for (y = 0; y < chunks.length; y++) {
 			for (x = 0; x < chunks[y].length; x++) {
-				chunks[y][x] = new Chunk(game, xPos, yPos);
+				chunks[y][x] = new Chunk(game, xPos * x, yPos * y);
 			}
 		}
 	}

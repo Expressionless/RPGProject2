@@ -130,7 +130,6 @@ public class Player extends Mob {
 				|| (angle < 0 && angle >= Angle.BOTTOM_RIGHT.angle);
 		boolean down = angle < Angle.BOTTOM_RIGHT.angle && angle > Angle.BOTTOM_LEFT.angle;
 
-		// TODO: MOVE TO FACING
 		if (up) {
 			setSprite(PLAYER_UP);
 			getSprite().flip(false);

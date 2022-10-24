@@ -3,6 +3,7 @@ package main.game.screens;
 import org.jboss.logging.Logger;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import io.sly.helix.gfx.Screen;
@@ -11,6 +12,7 @@ import io.sly.helix.gfx.SpriteSheet;
 import main.GameData;
 import main.constants.ApplicationConstants;
 import main.constants.AssetConstants;
+import main.constants.Constants;
 import main.constants.SerializationConstants;
 import main.game.RpgGame;
 import main.game.item.Item;
@@ -27,6 +29,8 @@ public class LoadScreen extends Screen {
 		this.queueLoadAssets();
 		this.getData().getManager().finishLoading();
 
+		// Load everything else here
+		((RpgGame)this.getGame()).getGameData().addFont(Constants.FONT_DEFAULT, new BitmapFont());
 		loadScreenSprite = this.getData().createSprite(ApplicationConstants.LOADSCREEN_PATH);
 
 		// Init Item Data

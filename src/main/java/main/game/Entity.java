@@ -1,11 +1,12 @@
 package main.game;
 
 
+import io.sly.helix.game.entities.HelixEntity;
 import io.sly.helix.utils.math.Vector2D;
 import main.GameData;
 import main.game.entities.mobs.neutral.Player;
 
-public abstract class Entity extends io.sly.helix.game.entities.Entity {
+public abstract class Entity extends HelixEntity {
 
 	private final RpgGame game;
 	

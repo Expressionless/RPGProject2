@@ -4,19 +4,20 @@ import io.sly.helix.utils.io.BinaryReader;
 import io.sly.helix.utils.io.BinaryWriter;
 import io.sly.helix.utils.io.Serializable;
 import io.sly.helix.utils.math.Vector2D;
-import main.game.RpgGame;
+import main.game.EntityManager;
+
 import main.game.inventory.Inventory;
 
 public class GenericInventory extends Inventory {
 
-	public GenericInventory(RpgGame game, Vector2D screenPos, int w, int h) {
-		super(game, screenPos, w, h);
+	public GenericInventory(EntityManager em, Vector2D screenPos, int w, int h) {
+		super(em, screenPos, w, h);
 		this.resetAllowedTypes();
 	}
 
 	@Override
 	public GenericInventory copy() {
-		return new GenericInventory(this.getGame(), this.getPos().copy(), this.getWidth(), this.getHeight());
+		return new GenericInventory(entityManager, this.getPos().copy(), this.getInventoryWidth(), this.getInventoryHeight());
 	}
 
 	@Override

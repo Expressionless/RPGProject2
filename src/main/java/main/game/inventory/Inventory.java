@@ -7,24 +7,24 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
-import io.sly.helix.game.entities.GameObject;
-
 import io.sly.helix.utils.io.Serializable;
 import io.sly.helix.utils.math.Rectangle;
 import io.sly.helix.utils.math.Vector2D;
 import main.GameData;
 import main.constants.ApplicationConstants;
 import main.constants.InventoryConstants;
+import main.game.Entity;
+import main.game.EntityManager;
 import main.game.RpgGame;
 import main.game.item.ItemInfo;
 import main.game.item.ItemType;
 
 /**
  * Basic Stackable Inventory
- * @author bmeachem
+ * @author Sly
  *
  */
-public abstract class Inventory extends GameObject implements Serializable {
+public abstract class Inventory extends Entity implements Serializable {
 	public static final float INV_X = 40 - ApplicationConstants.CAMERA_WIDTH / 4;
 	public static final float INV_Y = 15 - ApplicationConstants.CAMERA_HEIGHT / 8;
 	
@@ -44,21 +44,28 @@ public abstract class Inventory extends GameObject implements Serializable {
 
 	public abstract Inventory copy();
 	
-	public Inventory(RpgGame game, Vector2D screenPos, int w, int h) {
-		super(game.getData(), screenPos);
+	public Inventory(EntityManager em, Vector2D screenPos, int w, int h) {
+		super(em, screenPos);
 		this.visible = false;
 		this.slots = new Slot[h][w];
 		this.screenPos = screenPos;
-		this.bounds = new Rectangle(screenPos.getX(), screenPos.getY(), w * (Slot.SPRITE.getWidth() + InventoryConstants.INVENTORY_MARGIN), h * (Slot.SPRITE.getHeight() + InventoryConstants.INVENTORY_MARGIN));
-		this.game = game;
-		
+		this.bounds = defineBounds(screenPos, w, h);
 		this.allowedTypes = new HashSet<>();
 		
 		initSlots(w, h);
 	}
 	
-	public Inventory(RpgGame game, int w, int h) {
-		this(game, new Vector2D(INV_X, INV_Y), w, h);
+	public Inventory(EntityManager em, int w, int h) {
+		this(em, new Vector2D(INV_X, INV_Y), w, h);
+	}
+
+	private Rectangle defineBounds(Vector2D screenPos, int w, int h) {
+		float x = screenPos.getX();
+		float y = screenPos.getY();
+		float width = w * (Slot.SPRITE.getWidth() + InventoryConstants.INVENTORY_MARGIN);
+		float height = h * (Slot.SPRITE.getHeight() + InventoryConstants.INVENTORY_MARGIN);
+		return new Rectangle(x, y, width, height);
+		
 	}
 	
 	public void step(float delta) {
@@ -255,11 +262,11 @@ public abstract class Inventory extends GameObject implements Serializable {
 		return game.getGameData();
 	}
 	
-	public int getWidth() {
+	public int getInventoryWidth() {
 		return slots[0].length;
 	}
 	
-	public int getHeight() {
+	public int getInventoryHeight() {
 		return slots.length;
 	}
 	

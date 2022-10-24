@@ -4,7 +4,7 @@ import io.sly.helix.game.entities.GameObject;
 import io.sly.helix.utils.io.Serializable;
 import io.sly.helix.utils.math.Vector2D;
 import main.game.Entity;
-import main.game.RpgGame;
+import main.game.EntityManager;
 import main.game.entities.mobs.ai.AI;
 import main.game.inventory.subtypes.GenericInventory;
 import main.game.item.Item;
@@ -23,8 +23,8 @@ public abstract class Mob extends Entity implements Serializable {
 	protected AI ai;
 	protected abstract void updateSprite();
 	
-	public Mob(RpgGame game, Vector2D pos) {
-		super(game, pos);
+	public Mob(EntityManager em, Vector2D pos) {
+		super(em, pos);
 		this.stats = new MobStats();
 		this.destination = pos.copy();
 		

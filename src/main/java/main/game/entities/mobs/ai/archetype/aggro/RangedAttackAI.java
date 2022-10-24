@@ -37,7 +37,7 @@ public class RangedAttackAI extends ChaseAI {
 				return MobState.SEARCHING;
 			} else {
 				if(distToTarget < mob.getStat("attack_range")) {
-					this.cast();
+					this.fireProjectile();
 					return MobState.ATTACK;
 				} else {
 					mob.moveTo(target.getPos(), mob.getStat("speed"));
@@ -47,7 +47,7 @@ public class RangedAttackAI extends ChaseAI {
 		});
 	}
 	
-	private void cast() {
+	private void fireProjectile() {
 		if(!(mob instanceof RangedEnemy))
 			return;
 		

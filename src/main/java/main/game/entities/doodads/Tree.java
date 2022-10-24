@@ -5,7 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import io.sly.helix.annotations.QueueAsset;
 import io.sly.helix.utils.math.Vector2D;
 import main.constants.Constants;
-import main.game.RpgGame;
+import main.game.EntityManager;
+
 import main.game.entities.Doodad;
 
 public class Tree extends Doodad {
@@ -14,8 +15,8 @@ public class Tree extends Doodad {
 	
 	private float growtimer;
 	
-	public Tree(RpgGame game, Vector2D pos) {
-		super(game, pos);
+	public Tree(EntityManager em, Vector2D pos) {
+		super(em, pos);
 		this.addSprite(TREE_REF);
 		this.setSprite(TREE_REF);
 		this.growtimer = Constants.TREE_GROWTH_CYCLE;

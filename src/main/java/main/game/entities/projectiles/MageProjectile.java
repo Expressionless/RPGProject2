@@ -3,14 +3,14 @@ package main.game.entities.projectiles;
 
 import io.sly.helix.annotations.QueueAsset;
 import io.sly.helix.utils.math.Vector2D;
-import main.game.RpgGame;
+import main.game.EntityManager;
 import main.game.annotations.Damage;
 import main.game.entities.Projectile;
 import main.game.entities.mobs.neutral.Player;
 import main.game.entities.utils.RangedAttackInfo;
 import main.game.enums.DamageType;
 
-@Damage(DamageType.BLUNT)
+@Damage(DamageType.ELEMENTAL)
 public class MageProjectile extends Projectile {
 	private static final float MIN_SCALE = 0.75f;
 	private static final float MAX_SCALE = 1.25f;
@@ -23,8 +23,8 @@ public class MageProjectile extends Projectile {
 	@QueueAsset(ref = "res/sprites/projectile/mage_ball.png")
 	public static String SPRITE_REF;
 
-	public MageProjectile(RpgGame game, RangedAttackInfo attack, Vector2D pos, Vector2D destination) {
-		super(game, attack, pos, destination, SPRITE_REF);
+	public MageProjectile(EntityManager em, RangedAttackInfo attack, Vector2D pos, Vector2D destination) {
+		super(em, attack, pos, destination, SPRITE_REF);
 		
 		player = this.getPlayer();
 	}
@@ -35,7 +35,7 @@ public class MageProjectile extends Projectile {
 		
 		if(this.getPos().getDistTo(player.getPos()) < this.getWidth() / 2) {
 			player.subStat("health", this.attack.amount);
-			this.queueDispose();
+			this.entityManager.remove(this);
 			return;
 		}
 		

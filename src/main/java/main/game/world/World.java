@@ -2,28 +2,26 @@ package main.game.world;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.logging.Logger;
 
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.Vector2;
 
 import io.sly.helix.game.entities.GameObject;
 import io.sly.helix.utils.io.BinaryReader;
 import io.sly.helix.utils.io.BinaryWriter;
 import io.sly.helix.utils.io.Serializable;
-import io.sly.helix.utils.math.Rectangle;
 import io.sly.helix.utils.math.Vector2D;
-import main.constants.Constants;
+
 import main.constants.WorldConstants;
 import main.game.Entity;
+import main.game.EntityManager;
 import main.game.RpgGame;
 import main.game.entities.Mob;
 import main.game.entities.mobs.neutral.Player;
+import main.game.inventory.util.InventoryCursor;
 import main.game.item.ItemSpawner;
 
 public final class World implements Serializable {
@@ -35,9 +33,8 @@ public final class World implements Serializable {
 	public final ItemSpawner itemSpawner;
 
 	public final int width, height;
-	
-	public List<Entity> entities = new ArrayList<>();
 
+	private static EntityManager entityManager;
 	// Unique Entities
 	private Player player;
 
@@ -48,7 +45,9 @@ public final class World implements Serializable {
 
 	public World(RpgGame game, int width, int height) {
 		this.game = game;
-		this.itemSpawner = new ItemSpawner(game, this);
+		entityManager = new EntityManager(this);
+		game.getGameData().setCursor(new InventoryCursor(entityManager));
+		this.itemSpawner = new ItemSpawner(entityManager, this);
 		chunks = new Chunk[height][width];
 		this.width = width;
 		this.height = height;
@@ -85,9 +84,10 @@ public final class World implements Serializable {
 	public void step(float delta) {
 		this.updateCamera();
 		// player.update(delta);
-		for(Entity entity : entities) {
-			entity.update(delta);
-		}
+		entityManager.update(delta);
+		// for(Entity entity : entities) {
+		// 	entity.update(delta);
+		// }
 		
 	}
 
@@ -95,10 +95,10 @@ public final class World implements Serializable {
 		// only render the current chunk
 		// player.render(sb);
 		// BitmapFont font = getGame().getGameData().getFont(Constants.FONT_DEFAULT);
-		
-		for(Entity entity : entities) {
-			entity.render(sb);
-		}
+		entityManager.render(sb);
+		// for(Entity entity : entities) {
+		// 	entity.render(sb);
+		// }
 		// sb.end();
 		// shapeRenderer.begin(ShapeType.Line); //I'm using the Filled ShapeType, but remember you have three of them 
 		// for(Chunk[] chunkRow : chunks) {
@@ -124,15 +124,15 @@ public final class World implements Serializable {
 		
 	}
 	
-	private void renderRect(Rectangle rectangle) {
+	// private void renderRect(Rectangle rectangle) {
 		
-		float x = rectangle.getX();
-		float y = rectangle.getY();
+	// 	float x = rectangle.getX();
+	// 	float y = rectangle.getY();
 
-		float width = rectangle.getWidth();
-		float height = rectangle.getHeight();
-		shapeRenderer.rect(x, y, width, height); //assuming you have created those x, y, width and height variables 
-	}
+	// 	float width = rectangle.getWidth();
+	// 	float height = rectangle.getHeight();
+	// 	shapeRenderer.rect(x, y, width, height); //assuming you have created those x, y, width and height variables 
+	// }
 
 	/**
 	 * Shorthand for:
@@ -147,6 +147,8 @@ public final class World implements Serializable {
 		if(this.player != null)
 			log.warning("PLAYER IS ALREADY CREATED IN WORLD: " + this.toString());
 		this.player =  this.spawnMob(Player.class, pos);
+		entityManager.add(this.player);
+		this.game.getGameData().setPlayer(this.player);
 		return this.player;
 	}
 	
@@ -167,7 +169,7 @@ public final class World implements Serializable {
 			e.printStackTrace();
 			return null;
 		}
-		entities.add(newEntity);
+		entityManager.add(newEntity);
 		return newEntity;
 	}
 
@@ -192,6 +194,14 @@ public final class World implements Serializable {
 				chunks[y][x] = new Chunk(game, xPos * x, yPos * y);
 			}
 		}
+	}
+
+	public void addEntity(Entity e) {
+		entityManager.add(e);
+	}
+
+	public void removeEntity(Entity e) {
+		entityManager.destroy(e);
 	}
 
 	// Getters and Setters
@@ -223,5 +233,9 @@ public final class World implements Serializable {
 	@Override
 	public Serializable parse(BinaryReader reader, int pos) {
 		return null;
+	}
+
+	public static EntityManager getEntityManager() {
+		return entityManager;
 	}
 }

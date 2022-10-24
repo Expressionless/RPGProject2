@@ -23,7 +23,7 @@ public abstract class UIComponent extends Entity {
 	 * @param pos
 	 */
 	public UIComponent(UI ui, Vector2D pos) {
-		super(ui.game, pos);
+		super(ui.getEntityManager(), pos);
 		this.ui = ui;
 	}
 }

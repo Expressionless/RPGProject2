@@ -9,7 +9,6 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 import io.sly.helix.utils.math.Vector2D;
-import main.constants.Constants;
 import main.game.RpgGame;
 import main.game.entities.Mob;
 import main.game.entities.mobs.neutral.Player;
@@ -35,15 +34,6 @@ public final class GameData {
 	
 	public GameData(RpgGame game) {
 		this.game = game;
-	}
-
-	protected void dispose() {
-		items.removeIf((Item item) -> {
-			return item.willDispose();
-		});
-		mobs.removeIf((Mob mob) -> {
-			return mob.willDispose();
-		});
 	}
 	
 	// Getters and Setters

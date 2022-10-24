@@ -14,7 +14,6 @@ import main.constants.ApplicationConstants;
 
 import main.constants.UIConstants;
 import main.game.inventory.Slot;
-import main.game.inventory.util.InventoryCursor;
 
 import main.game.screens.GameScreen;
 import main.game.screens.LoadScreen;
@@ -59,9 +58,6 @@ public class RpgGame extends BaseGame {
 		Bar.left_disp.setScale(UIConstants.BAR_SCALE);
 		Bar.center_disp.setScale(UIConstants.BAR_SCALE);
 		Bar.right_disp.setScale(UIConstants.BAR_SCALE);
-		
-		
-		getGameData().setCursor(new InventoryCursor(this));
 	}
 
 	@Override

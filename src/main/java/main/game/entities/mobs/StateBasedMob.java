@@ -1,7 +1,8 @@
 package main.game.entities.mobs;
 
 import io.sly.helix.utils.math.Vector2D;
-import main.game.RpgGame;
+import main.game.EntityManager;
+
 import main.game.entities.Mob;
 import main.game.entities.mobs.ai.state.MobState;
 import main.game.entities.mobs.ai.state.StateEvent;
@@ -10,8 +11,8 @@ import main.game.entities.mobs.ai.state.StateMachine;
 public abstract class StateBasedMob extends Mob {
 	private final StateMachine stateMachine;
 
-	public StateBasedMob(RpgGame game, Vector2D pos) {
-		super(game, pos);
+	public StateBasedMob(EntityManager em, Vector2D pos) {
+		super(em, pos);
 		this.stateMachine = new StateMachine();	
 	}
 

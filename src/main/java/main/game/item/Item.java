@@ -7,7 +7,8 @@ import io.sly.helix.gfx.SpriteSheet;
 import io.sly.helix.utils.math.Vector2D;
 import main.constants.AssetConstants;
 import main.constants.PlayerConstants;
-import main.game.RpgGame;
+import main.game.EntityManager;
+
 import main.game.entities.Doodad;
 import main.game.entities.mobs.neutral.Player;
 import main.game.inventory.Inventory;
@@ -23,8 +24,8 @@ public class Item extends Doodad {
 
 	public final ItemInfo item;
 
-	public Item(RpgGame game, Vector2D pos, int itemID, int amount) {
-		super(game, pos);
+	public Item(EntityManager em, Vector2D pos, int itemID, int amount) {
+		super(em, pos);
 		this.item = ItemInfo.get(itemID);
 		this.attachItemSprite();
 
@@ -37,8 +38,8 @@ public class Item extends Doodad {
 		this.amount = amount;
 	}
 
-	public Item(RpgGame game, Vector2D pos, String itemName) {
-		this(game, pos, ItemInfo.idOf(itemName), 1);
+	public Item(EntityManager em, Vector2D pos, String itemName) {
+		this(em, pos, ItemInfo.idOf(itemName), 1);
 	}
 
 	public static int[] IDtoImageIndex(int ID) {
@@ -80,9 +81,9 @@ public class Item extends Doodad {
 					GenericInventory mainInv = player.getInventory();
 					
 					if (hotbar.add(this.item, this.amount))
-						this.queueDispose();
+						this.entityManager.destroy(this);
 					else if(mainInv.add(this.item, this.amount))
-						this.queueDispose();
+						this.entityManager.destroy(this);
 				}
 				this.moveTo(this.getGame().getGameData().getPlayer(), AssetConstants.ITEM_SPEED * delta);
 			}

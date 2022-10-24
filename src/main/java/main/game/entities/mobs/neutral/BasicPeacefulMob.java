@@ -4,13 +4,14 @@ import io.sly.helix.utils.io.BinaryReader;
 import io.sly.helix.utils.io.BinaryWriter;
 import io.sly.helix.utils.io.Serializable;
 import io.sly.helix.utils.math.Vector2D;
-import main.game.RpgGame;
+import main.game.EntityManager;
+
 import main.game.entities.Mob;
 
 public abstract class BasicPeacefulMob extends Mob {
 
-	public BasicPeacefulMob(RpgGame game, Vector2D pos) {
-		super(game, pos);
+	public BasicPeacefulMob(EntityManager em, Vector2D pos) {
+		super(em, pos);
 	}
 
 	@Override

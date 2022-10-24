@@ -1,23 +1,20 @@
 package main.game.item;
 
 import io.sly.helix.utils.math.Vector2D;
-import main.game.RpgGame;
+import main.game.EntityManager;
 import main.game.world.World;
 
 public class ItemSpawner {
 
-	private RpgGame game;
-	
-	private World world;
+	private final EntityManager entityManager;
 
-	public ItemSpawner(RpgGame game, World world) {
-		this.game = game;
+	public ItemSpawner(EntityManager em, World world) {
+		this.entityManager = em;
 	}
 	
 	public Item spawnItem(Vector2D pos, int id, int amount) {
-		Item item = new Item(game, pos, id, amount);
-		if(world != null)
-			world.entities.add(item);
+		Item item = new Item(entityManager, pos, id, amount);
+		entityManager.add(item);
 		return item;
 	}
 	/**

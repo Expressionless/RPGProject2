@@ -17,7 +17,8 @@ import io.sly.helix.utils.math.Vector2D;
 import main.constants.ApplicationConstants;
 import main.constants.InventoryConstants;
 import main.constants.PlayerConstants;
-import main.game.RpgGame;
+import main.game.EntityManager;
+
 import main.game.entities.Mob;
 import main.game.inventory.Inventory;
 import main.game.inventory.InventoryBuilder;
@@ -44,12 +45,12 @@ public class Player extends Mob {
 	private int anim_duration = 750;
 	private int movement = 0x00;
 
-	public Player(RpgGame game, Vector2D pos) {
-		super(game, pos);
+	public Player(EntityManager em, Vector2D pos) {
+		super(em, pos);
 		float x = 40 - ApplicationConstants.CAMERA_WIDTH / 4;
 		float y = 30 - ApplicationConstants.CAMERA_HEIGHT * .6f
 				+ Slot.SPRITE.getHeight() * (PlayerConstants.P_INV_HEIGHT + 1);
-		GenericInventory newInv = new GenericInventory(game, new Vector2D(x, y), PlayerConstants.P_INV_WIDTH,
+		GenericInventory newInv = new GenericInventory(em, new Vector2D(x, y), PlayerConstants.P_INV_WIDTH,
 				PlayerConstants.P_INV_HEIGHT);
 		this.setInventory(newInv);
 
@@ -57,20 +58,20 @@ public class Player extends Mob {
 		this.addSprite(PLAYER_DOWN, 4, anim_duration);
 		this.addSprite(PLAYER_UP, 4, anim_duration);
 
-		this.hotbar = new HotbarInventory(game,
+		this.hotbar = new HotbarInventory(em,
 				new Vector2D(40 - ApplicationConstants.CAMERA_WIDTH / 4, 30 - ApplicationConstants.CAMERA_HEIGHT * .6f));
 		this.hotbar.setVisible(true);
 
 		Vector2D armourPos = this.getInventory().getPos().copy();
 		armourPos.setX(armourPos.getX() - Slot.SPRITE.getWidth() - InventoryConstants.INVENTORY_MARGIN);
 		armourPos.setY(armourPos.getY() - Slot.SPRITE.getHeight());
-		this.armour = new ArmourInventory(game, armourPos);
+		this.armour = new ArmourInventory(em, armourPos);
 
 		Vector2D equipPos = this.getHotbar().getPos().copy();
 		equipPos.setX(equipPos.getX() - Slot.SPRITE.getWidth() * 2.5f - InventoryConstants.INVENTORY_MARGIN);
 		equipPos.setY(equipPos.getY());
 
-		this.equipped = new InventoryBuilder(game)
+		this.equipped = new InventoryBuilder(em)
 				.setScreenPos(equipPos)
 				.setSize(2, 1)
 				.setAllowedTypes("WEAPON", "TOOL")

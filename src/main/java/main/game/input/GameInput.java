@@ -15,6 +15,7 @@ import main.game.inventory.Slot;
 import main.game.inventory.subtypes.HotbarInventory;
 import main.game.inventory.util.InventoryCursor;
 import main.game.item.ItemSpawner;
+import main.game.world.World;
 
 public class GameInput extends InputAdapter {
 	
@@ -162,7 +163,7 @@ public class GameInput extends InputAdapter {
 		System.out.println("Mouse: " + cursor.getPos());
 		if (onGround || !player.getInventory().isVisible()) {
 			if (cursor.getItem() != null) {
-				ItemSpawner is = new ItemSpawner(getRpgGame(), null);
+				ItemSpawner is = new ItemSpawner(World.getEntityManager(), null);
 				is.spawnItem(cursor.getPos().copy(), cursor.getItem().ID, cursor.getAmount());
 
 				cursor.setItem(null);

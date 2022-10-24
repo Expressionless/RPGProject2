@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import io.sly.helix.utils.math.Vector2D;
 import main.game.Entity;
-import main.game.RpgGame;
+import main.game.EntityManager;
 import main.game.inventory.Slot;
 import main.game.item.ItemInfo;
 
@@ -15,8 +15,8 @@ public final class InventoryCursor extends Entity {
 
 	private boolean quickShift = false;
 
-	public InventoryCursor(RpgGame game) {
-		super(game, new Vector2D(0, 0));
+	public InventoryCursor(EntityManager em) {
+		super(em, new Vector2D(0, 0));
 		this.item = null;
 		this.amount = 0;
 	}

@@ -1,7 +1,7 @@
 package main.game.inventory;
 
 import io.sly.helix.utils.math.Vector2D;
-import main.game.RpgGame;
+import main.game.EntityManager;
 import main.game.inventory.subtypes.GenericInventory;
 
 public class InventoryBuilder {
@@ -12,10 +12,10 @@ public class InventoryBuilder {
 	
 	private String[] allowedTypes;
 	
-	private RpgGame rpgGame;
+	private EntityManager entityManager;
 	
-	public InventoryBuilder(RpgGame game) {
-		this.rpgGame = game;
+	public InventoryBuilder(EntityManager entityManager) {
+		this.entityManager = entityManager;
 	}
 	
 	public InventoryBuilder setVisible(boolean visible) {
@@ -46,7 +46,7 @@ public class InventoryBuilder {
 	
 	public Inventory build() {
 		System.out.println("Building inventory");
-		GenericInventory inventory = new GenericInventory(rpgGame, screenPos, width, height);
+		GenericInventory inventory = new GenericInventory(entityManager, screenPos, width, height);
 		inventory.setVisible(visible);
 		if(allowedTypes != null) {
 			inventory.clearAllowedTypes();

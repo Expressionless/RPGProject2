@@ -6,7 +6,8 @@ import io.sly.helix.utils.io.BinaryWriter;
 import io.sly.helix.utils.io.Serializable;
 import io.sly.helix.utils.math.Angle;
 import io.sly.helix.utils.math.Vector2D;
-import main.game.RpgGame;
+import main.game.EntityManager;
+
 import main.game.entities.mobs.RangedEnemy;
 import main.game.entities.mobs.ai.archetype.aggro.RangedAttackAI;
 import main.game.entities.projectiles.MageProjectile;
@@ -18,8 +19,8 @@ public class Mage extends RangedEnemy<MageProjectile> {
 	@QueueAsset(ref = "res/sprites/mob/enemy/mage/tiny_mage_right.png")
 	public static String MAGE_DOWN;
 
-	public Mage(RpgGame game, Vector2D pos) {
-		super(game, MageProjectile.class, pos);
+	public Mage(EntityManager em, Vector2D pos) {
+		super(em, MageProjectile.class, pos);
 		this.addSprite(MAGE_UP, 4, 750);
 		this.addSprite(MAGE_DOWN, 4, 750);
 		

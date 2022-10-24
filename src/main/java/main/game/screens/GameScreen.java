@@ -21,7 +21,7 @@ import main.game.world.World;
 public final class GameScreen extends Screen {
 	private static final Logger log = Logger.getLogger(GameScreen.class);
 
-	private World world;
+	public static World world;
 	private UI ui;
 	
 	private SpriteBatch batch;
@@ -33,10 +33,12 @@ public final class GameScreen extends Screen {
 	@Override
 	protected void create() {
 		this.batch = new SpriteBatch();
-		this.world = new World(this.getRpgGame(), 32, 32);
-		this.ui = new UI(this.getRpgGame());
-		this.getGameData().setUI(this.ui);
 		log.info("Starting world");
+		
+		world = new World(this.getRpgGame(), 32, 32);
+		log.info("Started world");
+		this.ui = new UI(World.getEntityManager());
+		this.getGameData().setUI(this.ui);
 		this.startWorld();
 	}
 	

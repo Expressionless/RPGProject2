@@ -1,5 +1,6 @@
 package main.game.entities.mobs.ai;
 
+import main.GameData;
 import main.game.entities.Mob;
 import main.game.entities.mobs.ai.state.MobState;
 import main.game.entities.mobs.ai.state.StateEvent;
@@ -14,7 +15,6 @@ public abstract class AI {
 	public abstract boolean isMoving();
 	
 	protected abstract void initStates();
-	protected Player player;
 	
 	/**
 	 * Attach an AI to a mob
@@ -58,5 +58,13 @@ public abstract class AI {
 	// Getters and Setters
 	public MobState getCurrentState() {
 		return this.stateMachine.getCurrentState();
-	}	
+	}
+
+	public Player getPlayer() {
+		return getGameData().getPlayer();
+	}
+
+	public GameData getGameData() {
+		return mob.getGameData();
+	}
 }

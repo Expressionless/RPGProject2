@@ -1,6 +1,5 @@
 package main.game.entities.mobs.ai.archetype.aggro;
 
-import main.GameData;
 import main.game.entities.Mob;
 import main.game.entities.mobs.ai.AI;
 import main.game.entities.mobs.ai.state.MobState;
@@ -10,13 +9,9 @@ public class ChaseAI extends AI {
 	protected static final int SEARCH_ALARM = 0;
 	protected float distToPlayer;
 	protected Mob target;
-	protected GameData gameData;
 	
 	public ChaseAI(Mob mob) {
 		super(mob);
-		
-		this.gameData = mob.getGameData();
-		this.player = this.gameData.getPlayer();
 	}
 
 	@Override
@@ -25,7 +20,7 @@ public class ChaseAI extends AI {
 		this.addState(MobState.IDLE, () -> {
 			if(target == null) {
 				if(distToPlayer < mob.getStat("sight")) {
-					target = player;
+					target = getPlayer();
 					return MobState.CHASE;
 				} else {
 					
@@ -82,7 +77,7 @@ public class ChaseAI extends AI {
 
 	@Override
 	protected void step() {
-		distToPlayer = mob.getPos().getDistTo(player.getPos());
+		distToPlayer = mob.getPos().getDistTo(getPlayer().getPos());
 	}
 
 	public boolean isSearching() {

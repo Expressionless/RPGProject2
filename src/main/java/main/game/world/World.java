@@ -147,8 +147,8 @@ public final class World implements Serializable {
 		if(this.player != null)
 			log.warning("PLAYER IS ALREADY CREATED IN WORLD: " + this.toString());
 		this.player =  this.spawnMob(Player.class, pos);
-		entityManager.add(this.player);
 		this.game.getGameData().setPlayer(this.player);
+		log.info("SPAWNED PLAYER: " + player.getPos());
 		return this.player;
 	}
 	
@@ -156,19 +156,20 @@ public final class World implements Serializable {
 		Constructor<T> constructor;
 
 		try {
-			constructor = entityType.getConstructor(RpgGame.class, Vector2D.class);
+			constructor = entityType.getConstructor(EntityManager.class, Vector2D.class);
 		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 			return null;
 		}
 		T newEntity;
 		try {
-			newEntity = constructor.newInstance(this.game, pos);
+			newEntity = constructor.newInstance(entityManager, pos);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
 			e.printStackTrace();
 			return null;
 		}
+		log.info("Spawned " + newEntity.getClass());
 		entityManager.add(newEntity);
 		return newEntity;
 	}

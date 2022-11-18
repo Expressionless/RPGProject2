@@ -47,6 +47,7 @@ public class Player extends Mob {
 
 	public Player(EntityManager em, Vector2D pos) {
 		super(em, pos);
+		em.getGameData().setPlayer(this);
 		float x = 40 - ApplicationConstants.CAMERA_WIDTH / 4;
 		float y = 30 - ApplicationConstants.CAMERA_HEIGHT * .6f
 				+ Slot.SPRITE.getHeight() * (PlayerConstants.P_INV_HEIGHT + 1);

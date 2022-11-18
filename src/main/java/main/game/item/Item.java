@@ -70,6 +70,8 @@ public class Item extends Doodad {
 		if (this.getSprite() != null) {
 			this.getSprite().setScale(XScale, YScale);
 		}
+		if(this.getGame().getGameData().getPlayer() == null)
+			return;
 		Inventory pInv = this.getGame().getGameData().getPlayer().getInventory();
 
 		if (this.distTo(this.getGame().getGameData().getPlayer()) < AssetConstants.ITEM_SUCK_DISTANCE) {

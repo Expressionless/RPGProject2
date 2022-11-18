@@ -44,7 +44,7 @@ public class EntityManager {
     }
 
     public void destroy(Entity e) {
-        e.setActive(false);
+        // e.setActive(false);
         e.dispose();
         removeBuffer.add(e);
     }
@@ -52,8 +52,9 @@ public class EntityManager {
     private void addEntities() {
         while(!addBuffer.isEmpty()) {
             Entity e = addBuffer.get(0);
-            e.setActive(true);
-            entities.add(e);
+            // e.setActive(true);
+            if(e != null)
+                entities.add(e);
             addBuffer.remove(0);
         }
     }

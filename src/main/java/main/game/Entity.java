@@ -10,7 +10,7 @@ public abstract class Entity extends HelixEntity {
 	protected final RpgGame game;
 	protected final EntityManager entityManager;
 
-	private boolean isActive = false;
+	private boolean isActive = true;
 	
 	public Entity(EntityManager em, Vector2D pos) {
 		super(em.getGame().getData(), pos);

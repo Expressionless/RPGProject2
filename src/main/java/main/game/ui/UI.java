@@ -9,13 +9,11 @@ import io.sly.helix.utils.math.Vector2D;
 import main.GameData;
 import main.constants.UIConstants;
 import main.game.EntityManager;
-import main.game.RpgGame;
 import main.game.ui.components.Bar;
 
 public class UI {
 
 	public final HashMap<Class<? extends UIComponent>, UIComponent> components;
-	public final RpgGame game;
 	
 	public final GameData gameData;
 	// 188 84 223
@@ -29,7 +27,6 @@ public class UI {
 		this.components = new HashMap<>();
 		this.entityManager = entityManager;
 		this.gameData = entityManager.getGameData();
-		this.game = entityManager.getGame();
 		
 		Vector2D healthbarPos = new Vector2D(UIConstants.HEALTH_BAR_X, UIConstants.HEALTH_BAR_Y);
 		this.addComponent(HealthBar.class, new HealthBar(gameData, this, healthbarPos));
@@ -37,6 +34,8 @@ public class UI {
 	
 	public void addComponent(Class<? extends UIComponent> clazz, UIComponent component) {
 		this.components.put(clazz, component);
+		this.entityManager.add(component);
+		component.setActive(true);
 	}
 
 	public EntityManager getEntityManager() {

@@ -21,11 +21,14 @@ public class WriteItems {
 		new ItemInfo(6, "tool"    , "axe", 1, NONSTACKABLE).write(writer);
 		new ItemInfo(7, "crafting", "shaft", 1, STACKABLE).write(writer);
 		new ItemInfo(8, "tool"    , "pickaxe", 1, NONSTACKABLE).write(writer);
+		new ItemInfo(9, "weapon"    , "bottle", 64, STACKABLE).write(writer);
 		
 		BinaryReader reader = new BinaryReader("/data/item");
-		ItemInfo item = new ItemInfo();
-		item.parse(reader, 0);
-		System.out.println(item);
+		for(int i = 0; i < 10; i++) {
+			ItemInfo item = new ItemInfo();
+			item.parse(reader, i);
+			System.out.println(item);
+		}
 	}
 
 }

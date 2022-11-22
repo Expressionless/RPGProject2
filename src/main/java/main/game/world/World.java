@@ -46,7 +46,10 @@ public final class World implements Serializable {
 	public World(RpgGame game, int width, int height) {
 		this.game = game;
 		entityManager = new EntityManager(this);
-		game.getGameData().setCursor(new InventoryCursor(entityManager));
+		InventoryCursor cursor = new InventoryCursor(entityManager);
+		cursor.setActive(true);
+		entityManager.add(cursor);
+		game.getGameData().setCursor(cursor);
 		this.itemSpawner = new ItemSpawner(entityManager, this);
 		chunks = new Chunk[height][width];
 		this.width = width;

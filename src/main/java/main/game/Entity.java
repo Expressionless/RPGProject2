@@ -21,6 +21,10 @@ public abstract class Entity extends HelixEntity {
 	public RpgGame getGame() {
 		return game;
 	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
 	
 	public GameData getGameData() {
 		return this.game.getGameData();

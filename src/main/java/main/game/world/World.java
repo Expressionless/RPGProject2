@@ -92,47 +92,8 @@ public final class World implements Serializable {
 	}
 
 	public void render(SpriteBatch sb, float delta) {
-		// only render the current chunk
-		// player.render(sb);
-		// BitmapFont font = getGame().getGameData().getFont(Constants.FONT_DEFAULT);
 		entityManager.render(sb);
-		// for(Entity entity : entities) {
-		// 	entity.render(sb);
-		// }
-		// sb.end();
-		// shapeRenderer.begin(ShapeType.Line); //I'm using the Filled ShapeType, but remember you have three of them 
-		// for(Chunk[] chunkRow : chunks) {
-		// 	for(Chunk chunk : chunkRow) {
-		// 		// if(chunk.equals(getPlayerChunk()))
-		// 		// 	font.draw(sb, "Hello", chunk.getBounds().getX(), chunk.getBounds().getY());
-		// 		renderRect(new Rectangle(0, 0, 128, 128));
-		// 		// font.draw(sb, "0,0", 0, 0);
-		// 	}
-		// // }
-		// shapeRenderer.end(); 
-		// sb.begin();
-		// player.render(sb);
-
-		// Chunk chunk = getPlayerChunk();
-		// font.draw(sb, "Hello", chunk.getBounds().getX(), chunk.getBounds().getY());
-		// renderRect(chunk.getBounds());
-		// renderRect(new Rectangle(32, 32, 32, 32));
-		// System.out.println(this.getPlayer().getPos());
-		// Gdx.gl.glClearColor(0, 0, 0.2f, 1); 
-		// Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT); 
-	 
-		
 	}
-	
-	// private void renderRect(Rectangle rectangle) {
-		
-	// 	float x = rectangle.getX();
-	// 	float y = rectangle.getY();
-
-	// 	float width = rectangle.getWidth();
-	// 	float height = rectangle.getHeight();
-	// 	shapeRenderer.rect(x, y, width, height); //assuming you have created those x, y, width and height variables 
-	// }
 
 	/**
 	 * Shorthand for:
@@ -146,7 +107,10 @@ public final class World implements Serializable {
 	public Player spawnPlayer(Vector2D pos) {
 		if(this.player != null)
 			log.warning("PLAYER IS ALREADY CREATED IN WORLD: " + this.toString());
-		this.player =  this.spawnMob(Player.class, pos);
+		this.player = new Player(entityManager, pos);//this.spawnMob(Player.class, pos);
+		entityManager.add(player);
+		this.player.setActive(true);
+		log.info("PLAYER: " + (this.player != null));
 		this.game.getGameData().setPlayer(this.player);
 		log.info("SPAWNED PLAYER: " + player.getPos());
 		return this.player;
@@ -163,6 +127,8 @@ public final class World implements Serializable {
 		}
 		T newEntity;
 		try {
+			log.info("Instantiating with: " + entityManager);
+			log.info("Instantiating at: " + pos);
 			newEntity = constructor.newInstance(entityManager, pos);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {

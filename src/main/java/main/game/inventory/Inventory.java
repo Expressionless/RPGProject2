@@ -39,7 +39,6 @@ public abstract class Inventory extends Entity implements Serializable {
 	private Vector2D screenPos;
 	private Rectangle bounds;
 	
-	private RpgGame game;
 	private Set<ItemType> allowedTypes;
 
 	public abstract Inventory copy();
@@ -282,11 +281,6 @@ public abstract class Inventory extends Entity implements Serializable {
 	
 	public Rectangle getBounds() {
 		return this.bounds;
-	}
-	
-	@Override
-	public Vector2D getPos() {
-		return new Vector2D(bounds.getX(), bounds.getY());
 	}
 	
 	public Vector2D getScreenPos() {
